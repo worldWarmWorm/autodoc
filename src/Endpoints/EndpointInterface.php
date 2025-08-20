@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Examples;
+namespace ApiAutodoc\Endpoints;
 
 interface EndpointInterface
 {

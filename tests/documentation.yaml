@@ -1,8 +1,8 @@
 # Документация эндпоинтов ApiAutodoc\Generators\YamlDocumentation
 
-getItems:
-  signature: "getItems"
-  endpointInputType: "ApiAutodoc\\Examples\\ItemsParams"
+getProducts:
+  signature: "getProducts"
+  endpointInputType: "ApiAutodoc\\Examples\\ProductParams"
   props:
     ids:
       type: "array"

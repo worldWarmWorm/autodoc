@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ApiAutodoc\Generators;
 
+use ApiAutodoc\Endpoints\EndpointInterface;
 use ReflectionMethod;
-use ApiAutodoc\Examples\EndpointInterface;
 
 abstract class DocumentationGenerator implements DocumentationGeneratorInterface
 {

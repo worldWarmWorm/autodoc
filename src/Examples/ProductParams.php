@@ -6,7 +6,7 @@ namespace ApiAutodoc\Examples;
 
 use ApiAutodoc\Params\Params;
 
-class ItemsParams extends Params
+class ProductParams extends Params
 {
     /**
      * Unique ids of items

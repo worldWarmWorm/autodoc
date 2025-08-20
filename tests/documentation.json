@@ -1,6 +1,6 @@
 {
-    "getItems": {
-        "endpointInputType": "ApiAutodoc\\Examples\\ItemsParams",
+    "getProducts": {
+        "endpointInputType": "ApiAutodoc\\Examples\\ProductParams",
         "props": {
             "ids": {
                 "type": "array",
