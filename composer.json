@@ -1,0 +1,24 @@
+{
+  "name": "world-warm-worm/api-autodoc",
+  "description": "Generates documentation of api endpoints in several file formates",
+  "type": "library",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "v.davydkin",
+      "email": "st.valeriq@gamil.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "8.4.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "12.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "WorldWarmWorm\\ApiAutodoc\\": "src/"
+    }
+  }
+}
