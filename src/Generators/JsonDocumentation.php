@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ApiAutodoc\Generators;
 
+use ApiAutodoc\Params\ParamsInterface;
 use ReflectionClass, ReflectionException, Throwable;
 
 final class JsonDocumentation extends DocumentationGenerator
@@ -21,7 +22,7 @@ final class JsonDocumentation extends DocumentationGenerator
                         if (class_exists($typeName) || interface_exists($typeName)) {
                             $reflectionClass = new ReflectionClass($typeName);
 
-                            if ($reflectionClass->implementsInterface('EndpointInterface')) {
+                            if ($reflectionClass->implementsInterface('ApiAutodoc\\Params\\ParamsInterface')) {
                                 $endpointName = $endpoint->getName();
                                 $documentation[$endpointName]['endpointInputType'] = $typeName;
 

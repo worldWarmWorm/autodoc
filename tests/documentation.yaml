@@ -1,0 +1,30 @@
+# Документация эндпоинтов ApiAutodoc\Generators\YamlDocumentation
+
+getItems:
+  signature: "getItems"
+  endpointInputType: "ApiAutodoc\\Examples\\ItemsParams"
+  props:
+    ids:
+      type: "array"
+      isRequired: false
+      description: "/**
+     * Unique ids of items
+     */"
+    category:
+      type: "string"
+      isRequired: true
+      description: "/**
+     * Category of items
+     */"
+    limit:
+      type: "int"
+      isRequired: true
+      description: "/**
+     * Count limit of items
+     */"
+    offset:
+      type: "int"
+      isRequired: true
+      description: "/**
+     * Offset of items
+     */"

@@ -22,7 +22,7 @@ final class YamlDocumentation extends DocumentationGenerator
                         if (class_exists($typeName) || interface_exists($typeName)) {
                             $reflectionClass = new ReflectionClass($typeName);
 
-                            if ($reflectionClass->implementsInterface('ParamsInterface')) {
+                            if ($reflectionClass->implementsInterface('ApiAutodoc\\Params\\ParamsInterface')) {
                                 $endpointName = $endpoint->getName();
                                 $documentation[$endpointName]['signature'] = $endpoint;
                                 $documentation[$endpointName]['endpointInputType'] = $typeName;
@@ -74,7 +74,7 @@ final class YamlDocumentation extends DocumentationGenerator
                 } elseif (is_numeric($value)) {
                     $valueStr = $value;
                 } else {
-                    $valueStr = '"' . addslashes($value) . '"';
+                    $valueStr = '"' . addslashes($value instanceof \ReflectionMethod ? $value->getName() : $value) . '"';
                 }
                 if (is_int($key)) {
                     $yaml .= "$indentStr- $valueStr\n";

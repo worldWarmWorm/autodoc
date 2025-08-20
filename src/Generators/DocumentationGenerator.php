@@ -17,7 +17,10 @@ abstract class DocumentationGenerator implements DocumentationGeneratorInterface
     public function __construct(EndpointInterface $controller, ?string $methodPartNameFilter = null)
     {
         $reflectionClass = new \ReflectionClass($controller);
-        $endpoints = $reflectionClass->getMethods();
+        $endpoints = array_filter(
+            $reflectionClass->getMethods(),
+            static fn(ReflectionMethod $method) => !str_contains($method->name, '__')
+        );
 
         if (empty($endpoints)) {
             throw new ApiAutodocException("Endpoints not found");
