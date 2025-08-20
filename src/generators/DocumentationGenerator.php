@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace generators;
 
-use EndpointInterface, ReflectionClass, ReflectionMethod;
+use params\EndpointInterface, ReflectionClass, ReflectionMethod;
 
 abstract class DocumentationGenerator implements DocumentationGeneratorInterface
 {
