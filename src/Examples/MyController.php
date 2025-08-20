@@ -1,8 +1,10 @@
 <?php
 
-use examples\ItemsParams;
-use params\EndpointInterface;
-use generators\{ApiAutodocException, JsonDocumentation, YamlDocumentation};
+namespace ApiAutodoc\Examples;
+
+use ReflectionException;
+use Throwable;
+use ApiAutodoc\Generators\{ApiAutodocException, JsonDocumentation, YamlDocumentation};
 
 final class MyController implements EndpointInterface
 {
@@ -23,13 +25,3 @@ final class MyController implements EndpointInterface
         ];
     }
 }
-
-function init(): void
-{
-    $controller = new MyController();
-
-    echo "Documentation created";
-}
-
-init();
-

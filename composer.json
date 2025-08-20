@@ -14,11 +14,17 @@
     "php": "8.4.*"
   },
   "require-dev": {
-    "phpunit/phpunit": "12.*"
+    "phpunit/phpunit": "^12.4"
   },
   "autoload": {
     "psr-4": {
-      "WorldWarmWorm\\ApiAutodoc\\": "src/"
+      "ApiAutodoc\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ApiAutodoc\\Tests\\": "tests/"
     }
   }
+
 }

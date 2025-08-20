@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace params;
+namespace ApiAutodoc\Params;
 
 use ArrayObject, ReflectionClass;
 

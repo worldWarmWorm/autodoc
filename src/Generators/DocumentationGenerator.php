@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace generators;
+namespace ApiAutodoc\Generators;
 
-use params\EndpointInterface, ReflectionClass, ReflectionMethod;
+use ReflectionMethod;
+use ApiAutodoc\Examples\EndpointInterface;
 
 abstract class DocumentationGenerator implements DocumentationGeneratorInterface
 {
@@ -15,7 +16,7 @@ abstract class DocumentationGenerator implements DocumentationGeneratorInterface
 
     public function __construct(EndpointInterface $controller, ?string $methodPartNameFilter = null)
     {
-        $reflectionClass = new ReflectionClass($controller);
+        $reflectionClass = new \ReflectionClass($controller);
         $endpoints = $reflectionClass->getMethods();
 
         if (empty($endpoints)) {

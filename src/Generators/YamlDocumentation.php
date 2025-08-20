@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace generators;
+namespace ApiAutodoc\Generators;
 
 use ReflectionClass, ReflectionException, Throwable;
 

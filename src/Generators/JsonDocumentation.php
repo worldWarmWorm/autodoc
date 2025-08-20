@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace generators;
+namespace ApiAutodoc\Generators;
 
 use ReflectionClass, ReflectionException, Throwable;
 
@@ -21,7 +21,7 @@ final class JsonDocumentation extends DocumentationGenerator
                         if (class_exists($typeName) || interface_exists($typeName)) {
                             $reflectionClass = new ReflectionClass($typeName);
 
-                            if ($reflectionClass->implementsInterface('ParamsInterface')) {
+                            if ($reflectionClass->implementsInterface('EndpointInterface')) {
                                 $endpointName = $endpoint->getName();
                                 $documentation[$endpointName]['endpointInputType'] = $typeName;
 

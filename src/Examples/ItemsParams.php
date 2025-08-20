@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace examples;
+namespace ApiAutodoc\Examples;
 
-use params\Params;
+use ApiAutodoc\Params\Params;
 
 class ItemsParams extends Params
 {

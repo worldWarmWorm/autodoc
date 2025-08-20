@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace params;
+namespace ApiAutodoc\Examples;
 
 interface EndpointInterface
 {
