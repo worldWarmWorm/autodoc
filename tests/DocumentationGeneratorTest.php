@@ -5,9 +5,9 @@ namespace ApiAutodoc\Tests;
 use ApiAutodoc\Examples\MyController;
 use PHPUnit\Framework\TestCase;
 
-class MyTest extends TestCase
+final class DocumentationGeneratorTest extends TestCase
 {
-    public function testMyTest(): void
+    public function testGenerationOfDocumentationFiles(): void
     {
         $controller = new MyController();
 
