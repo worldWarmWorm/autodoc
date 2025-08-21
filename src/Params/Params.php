@@ -4,11 +4,19 @@ declare(strict_types=1);
 
 namespace ApiAutodoc\Params;
 
-use ArrayObject, ReflectionClass;
-use ReflectionNamedType;
+use ArrayObject, ReflectionClass, ReflectionNamedType;
 
+/**
+ * @template TKey of array-key
+ * @template TValue
+ *
+ * @extends ArrayObject<TKey, TValue>
+ */
 abstract class Params extends ArrayObject implements ParamsInterface
 {
+    /**
+     * @param array<null|int|string, null|int|string> $data
+     */
     public function __construct(array $data = [])
     {
         $data = array_filter(
@@ -45,13 +53,13 @@ abstract class Params extends ArrayObject implements ParamsInterface
                 continue;
             }
 
-            if (!$this->checkType($value, $type)) {
+            if (false === $this->checkType($value, $type)) {
                 throw new \Exception("Incorrect type for property \"$name\": expected {$type->getName()}, got " . gettype($value));
             }
         }
     }
 
-    private function checkType($value, ReflectionNamedType $type): bool
+    private function checkType(mixed $value, ReflectionNamedType $type): bool
     {
         if ($type->isBuiltin()) {
             return match ($type->getName()) {

@@ -54,7 +54,10 @@ final class YamlDocumentation extends DocumentationGenerator
         }
     }
 
-    private function arrayToYaml(array $array, $indent = 0): string
+    /**
+     * @param array<mixed, mixed> $array
+     */
+    private function arrayToYaml(array $array, int $indent = 0): string
     {
         $yaml = '';
         $indentStr = str_repeat('  ', $indent);
