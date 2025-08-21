@@ -11,20 +11,20 @@ class ProductParams extends Params
     /**
      * Unique ids of items
      */
-    public readonly ?array $ids;
+    public ?array $ids;
 
     /**
      * Category of items
      */
-    public readonly string $category;
+    public string $category;
 
     /**
      * Count limit of items
      */
-    public readonly int $limit;
+    public int $limit;
 
     /**
      * Offset of items
      */
-    public readonly int $offset;
+    public int $offset;
 }

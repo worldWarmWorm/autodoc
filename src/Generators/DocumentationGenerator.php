@@ -22,7 +22,7 @@ abstract class DocumentationGenerator implements DocumentationGeneratorInterface
             static fn(ReflectionMethod $method) => !str_contains($method->name, '__')
         );
 
-        if (empty($endpoints)) {
+        if ($endpoints === []) {
             throw new ApiAutodocException("Endpoints not found");
         }
 

@@ -18,6 +18,10 @@ final class ProductController implements EndpointInterface
         new YamlDocumentation($this)->generate();
     }
 
+    /**
+     * @param ProductParams $params
+     * @return array{success: bool, products: string}
+     */
     public function getProducts(ProductParams $params): array
     {
         $params = [
