@@ -14,8 +14,8 @@ final class ProductController implements EndpointInterface
      */
     public function __construct()
     {
-        new JsonDocumentation($this)->generate();
-        new YamlDocumentation($this)->generate();
+        (new JsonDocumentation($this))->generate();
+        (new YamlDocumentation($this))->generate();
     }
 
     /**

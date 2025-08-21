@@ -5,14 +5,17 @@ declare(strict_types=1);
 namespace ApiAutodoc\Params;
 
 use ArrayObject, ReflectionClass;
+use ReflectionNamedType;
 
 abstract class Params extends ArrayObject implements ParamsInterface
 {
     public function __construct(array $data = [])
     {
-        if (in_array('_', $data)) {
-            unset($data['_']);
-        }
+        $data = array_filter(
+            $data,
+            static fn ($key, $value) => !in_array($value, [null, '', '_'], true),
+            ARRAY_FILTER_USE_BOTH
+        );
 
         parent::__construct($data, ArrayObject::ARRAY_AS_PROPS);
         self::validateProperties();
@@ -35,9 +38,10 @@ abstract class Params extends ArrayObject implements ParamsInterface
             }
 
             $value = $this[$name];
+            /** @var ?ReflectionNamedType $type */
             $type = $property->getType();
 
-            if (is_null($type)) {
+            if (null === $type) {
                 continue;
             }
 
@@ -47,30 +51,20 @@ abstract class Params extends ArrayObject implements ParamsInterface
         }
     }
 
-    private function checkType($value, ReflectionType $type): bool
+    private function checkType($value, ReflectionNamedType $type): bool
     {
-        if ($type instanceof \ReflectionNamedType) {
-            if ($type->isBuiltin()) {
-                switch ($type->getName()) {
-                    case 'int':
-                        return is_int($value);
-                    case 'string':
-                        return is_string($value);
-                    case 'bool':
-                        return is_bool($value);
-                    case 'array':
-                        return is_array($value);
-                    case 'float':
-                        return is_float($value);
-                    default:
-                        return true;
-                }
-            } else {
-                $class = $type->getName();
-                return $value instanceof $class;
-            }
+        if ($type->isBuiltin()) {
+            return match ($type->getName()) {
+                'int' => is_int($value),
+                'string' => is_string($value),
+                'bool' => is_bool($value),
+                'array' => is_array($value),
+                'float' => is_float($value),
+                default => true,
+            };
+        } else {
+            $class = $type->getName();
+            return $value instanceof $class;
         }
-
-        return false;
     }
 }
