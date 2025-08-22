@@ -12,8 +12,8 @@ interface DocumentationGeneratorInterface
         string $endpoint, 
         string $title, 
         string $typeName,
-        array $parameters,
-    ): callable;
+        array $properties,
+    ): array;
 
     public function save(string $fileName = 'documentation'): void;
 }

@@ -41,7 +41,7 @@ final class ProductController implements EndpointInterface
     {
         $commonTitlePart = "The documentation of #" . self::class . " endpoints";
 
-        (new JsonDocumentation($this))->generate($commonTitlePart, 'doc', 'doc');
-        (new YamlDocumentation($this))->generate("# $commonTitlePart \n\n", 'doc', 'doc');
+        (new JsonDocumentation($this))->generate($commonTitlePart, 'doc');
+        (new YamlDocumentation($this))->generate("# $commonTitlePart \n\n", 'doc');
     }
 }

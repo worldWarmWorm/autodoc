@@ -4,16 +4,20 @@ declare(strict_types=1);
 
 namespace ApiAutodoc\Generators;
 
+use ApiAutodoc\Enum\FIleExtension;
 use ApiAutodoc\Exceptions\ApiAutodocException;
-use ReflectionClass, ReflectionNamedType, Throwable;
+use ReflectionNamedType;
 
 final class JsonDocumentation extends DocumentationGenerator
 {
-    private const string JSON = 'json';
-    
-    public function process(string $endpoint, string $title, string $typeName, array $properties): callable
+    public function process(
+        string $endpoint,
+        string $title,
+        string $typeName,
+        array $properties
+    ): array
     {
-        return function (string $endpoint, string $title, string $typeName, array $properties): void {
+        return (function() use ($endpoint, $title, $typeName, $properties): array {
             $documentation['_comment'] = $title;
             $documentation['endpoints'][$endpoint]['endpointInputType'] = $typeName;
 
@@ -26,7 +30,9 @@ final class JsonDocumentation extends DocumentationGenerator
                     'description' => $property->getDocComment()
                 ];
             }
-        };
+
+            return $documentation;
+        })();
     }
 
     public function save(string $fileName = 'documentation'): void
@@ -36,7 +42,7 @@ final class JsonDocumentation extends DocumentationGenerator
         }
 
         file_put_contents(
-            "$fileName." . self::JSON,
+            "$fileName." . FileExtension::JSON->value,
             json_encode($this->documentation, JSON_PRETTY_PRINT)
         );
     }

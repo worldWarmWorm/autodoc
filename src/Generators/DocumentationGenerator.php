@@ -44,10 +44,8 @@ abstract class DocumentationGenerator implements DocumentationGeneratorInterface
         $this->endpoints = $endpoints;
     }
 
-    public function generate(string $title, callable $process): static
+    public function generate(string $title, string $fileName = 'documentation'): void
     {
-        $documentation = [];
-
         foreach ($this->endpoints as $endpoint) {
             foreach ($endpoint->getParameters() as $parameter) {
                 /** @var ?ReflectionNamedType $type */
@@ -60,7 +58,7 @@ abstract class DocumentationGenerator implements DocumentationGeneratorInterface
                         $reflectionClass = new ReflectionClass($typeName);
 
                         if ($reflectionClass->implementsInterface('ApiAutodoc\\Params\\ParamsInterface')) {
-                            $process(
+                            $this->documentation[] = $this->process(
                                 $endpoint->getName(),
                                 $title,
                                 $typeName,
@@ -72,8 +70,6 @@ abstract class DocumentationGenerator implements DocumentationGeneratorInterface
             }
         }
 
-        $this->documentation = $documentation;
-
-        return $this;
+        $this->save($fileName);
     }
 }

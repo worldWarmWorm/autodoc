@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ApiAutodoc\Generators;
 
+use ApiAutodoc\Enum\FileExtension;
 use ReflectionClass, ReflectionNamedType, ReflectionMethod;
 
 final class YamlDocumentation extends DocumentationGenerator
@@ -48,7 +49,7 @@ final class YamlDocumentation extends DocumentationGenerator
         if ([] !== $documentation) {
             $content = $title .  $this->arrayToYaml($documentation);
 
-            file_put_contents("$process." . self::YAML, $content);
+            file_put_contents("$process." . FileExtension::YAML->value, $content);
         }
     }
 
