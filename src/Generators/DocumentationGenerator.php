@@ -14,6 +14,9 @@ abstract class DocumentationGenerator implements DocumentationGeneratorInterface
      */
     protected array $endpoints;
 
+    /**
+     * @throws ApiAutodocException
+     */
     public function __construct(EndpointInterface $controller, ?string $methodPartNameFilter = null)
     {
         $reflectionClass = new \ReflectionClass($controller);

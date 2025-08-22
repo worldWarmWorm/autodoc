@@ -11,7 +11,7 @@ final class DocumentationGeneratorTest extends TestCase
     {
         $controller = new ProductController();
 
-        self::assertTrue(file_exists('documentation.json'));
-        self::assertTrue(file_exists('documentation.yaml'));
+        self::assertTrue(file_exists('doc.json'));
+        self::assertTrue(file_exists('doc.yaml'));
     }
 }

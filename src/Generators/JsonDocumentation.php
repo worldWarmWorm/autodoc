@@ -8,7 +8,9 @@ use ReflectionClass, ReflectionNamedType, Throwable;
 
 final class JsonDocumentation extends DocumentationGenerator
 {
-    public function generate(): void
+    private const string JSON = 'json';
+
+    public function generate(string $title, string $file = 'documentation'): void
     {
         $documentation = [];
 
@@ -25,12 +27,13 @@ final class JsonDocumentation extends DocumentationGenerator
 
                         if ($reflectionClass->implementsInterface('ApiAutodoc\\Params\\ParamsInterface')) {
                             $endpointName = $endpoint->getName();
-                            $documentation[$endpointName]['endpointInputType'] = $typeName;
+                            $documentation['_comment'] = $title;
+                            $documentation['endpoints'][$endpointName]['endpointInputType'] = $typeName;
 
                             foreach ($reflectionClass->getProperties() as $property) {
                                 /** @var ?ReflectionNamedType $propertyType */
                                 $propertyType = $property->getType();
-                                $documentation[$endpointName]['props'][$property->getName()] = [
+                                $documentation['endpoints'][$endpointName]['props'][$property->getName()] = [
                                     'type' => $propertyType?->getName(),
                                     'isRequired' => !$propertyType?->allowsNull(),
                                     'description' => $property->getDocComment()
@@ -45,11 +48,7 @@ final class JsonDocumentation extends DocumentationGenerator
         if ([] !== $documentation) {
             $content = json_encode($documentation, JSON_PRETTY_PRINT);
 
-            try {
-                file_put_contents('documentation.json', $content);
-            } catch (Throwable $e) {
-                throw $e;
-            }
+            file_put_contents("$file." . self::JSON, $content);
         }
     }
 }

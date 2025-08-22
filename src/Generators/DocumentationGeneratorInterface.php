@@ -6,5 +6,5 @@ namespace ApiAutodoc\Generators;
 
 interface DocumentationGeneratorInterface
 {
-    public function generate(): void;
+    public function generate(string $title, string $file = 'documentation'): void;
 }

@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace ApiAutodoc\Generators;
 
-use ReflectionClass, ReflectionNamedType, Throwable;
+use ReflectionClass, ReflectionNamedType, ReflectionMethod;
 
 final class YamlDocumentation extends DocumentationGenerator
 {
-    public function generate(): void
+    private const string YAML = 'yaml';
+
+    public function generate(string $title, string $file = 'documentation'): void
     {
         $documentation = [];
 
@@ -25,13 +27,13 @@ final class YamlDocumentation extends DocumentationGenerator
 
                         if ($reflectionClass->implementsInterface('ApiAutodoc\\Params\\ParamsInterface')) {
                             $endpointName = $endpoint->getName();
-                            $documentation[$endpointName]['signature'] = $endpoint;
-                            $documentation[$endpointName]['endpointInputType'] = $typeName;
+                            $documentation['endpoints'][$endpointName]['signature'] = $endpoint;
+                            $documentation['endpoints'][$endpointName]['endpointInputType'] = $typeName;
 
                             foreach ($reflectionClass->getProperties() as $property) {
                                 /** @var ?ReflectionNamedType $propertyType */
                                 $propertyType = $property->getType();
-                                $documentation[$endpointName]['props'][$property->getName()] = [
+                                $documentation['endpoints'][$endpointName]['props'][$property->getName()] = [
                                     'type' => $propertyType?->getName(),
                                     'isRequired' => !$propertyType?->allowsNull(),
                                     'description' => $property->getDocComment()
@@ -44,18 +46,14 @@ final class YamlDocumentation extends DocumentationGenerator
         }
 
         if ([] !== $documentation) {
-            $content = "# Документация эндпоинтов " . self::class . "\n\n" .  $this->arrayToYaml($documentation);
+            $content = $title .  $this->arrayToYaml($documentation);
 
-            try {
-                file_put_contents('documentation.yaml', $content);
-            } catch (Throwable $e) {
-                throw $e;
-            }
+            file_put_contents("$file." . self::YAML, $content);
         }
     }
 
     /**
-     * @param array<mixed, mixed> $array
+     * @param array<string|int, mixed> $array
      */
     private function arrayToYaml(array $array, int $indent = 0): string
     {
@@ -77,7 +75,7 @@ final class YamlDocumentation extends DocumentationGenerator
                 } elseif (is_numeric($value)) {
                     $valueStr = $value;
                 } else {
-                    $valueStr = '"' . addslashes($value instanceof \ReflectionMethod ? $value->getName() : $value) . '"';
+                    $valueStr = '"' . addslashes($value instanceof ReflectionMethod ? $value->getName() : $value) . '"';
                 }
                 if (is_int($key)) {
                     $yaml .= "$indentStr- $valueStr\n";

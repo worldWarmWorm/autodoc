@@ -1,0 +1,33 @@
+# The documentation of #ApiAutodoc\Examples\ProductController endpoints 
+
+endpoints:
+  getProducts:
+    signature: "getProducts"
+    endpointInputType: "ApiAutodoc\\Examples\\ProductParams"
+    props:
+      ids:
+        type: "array"
+        isRequired: false
+        description: "/**
+     * Unique ids of items
+     *
+     * @var array<int, int>
+     */"
+      category:
+        type: "string"
+        isRequired: true
+        description: "/**
+     * Category of items
+     */"
+      limit:
+        type: "int"
+        isRequired: true
+        description: "/**
+     * Count limit of items
+     */"
+      offset:
+        type: "int"
+        isRequired: true
+        description: "/**
+     * Offset of items
+     */"
