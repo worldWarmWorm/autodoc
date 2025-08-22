@@ -1,30 +1,32 @@
-{
-    "_comment": "The documentation of #ApiAutodoc\\Examples\\ProductController endpoints",
-    "endpoints": {
-        "getProducts": {
-            "endpointInputType": "ApiAutodoc\\Examples\\ProductParams",
-            "props": {
-                "ids": {
-                    "type": "array",
-                    "isRequired": false,
-                    "description": "\/**\n     * Unique ids of items\n     *\n     * @var array<int, int>\n     *\/"
-                },
-                "category": {
-                    "type": "string",
-                    "isRequired": true,
-                    "description": "\/**\n     * Category of items\n     *\/"
-                },
-                "limit": {
-                    "type": "int",
-                    "isRequired": true,
-                    "description": "\/**\n     * Count limit of items\n     *\/"
-                },
-                "offset": {
-                    "type": "int",
-                    "isRequired": true,
-                    "description": "\/**\n     * Offset of items\n     *\/"
+[
+    {
+        "_comment": "The documentation of #ApiAutodoc\\Controllers\\Product\\ProductController endpoints",
+        "endpoints": {
+            "getProducts": {
+                "endpointInputType": "ApiAutodoc\\Controllers\\Product\\ProductParams",
+                "props": {
+                    "ids": {
+                        "type": "array",
+                        "isRequired": false,
+                        "description": "\/**\n     * Unique ids of items\n     *\n     * @var array<int, int>\n     *\/"
+                    },
+                    "category": {
+                        "type": "string",
+                        "isRequired": true,
+                        "description": "\/**\n     * Category of items\n     *\/"
+                    },
+                    "limit": {
+                        "type": "int",
+                        "isRequired": true,
+                        "description": "\/**\n     * Count limit of items\n     *\/"
+                    },
+                    "offset": {
+                        "type": "int",
+                        "isRequired": true,
+                        "description": "\/**\n     * Offset of items\n     *\/"
+                    }
                 }
             }
         }
     }
-}
+]

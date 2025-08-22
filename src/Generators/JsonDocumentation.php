@@ -4,27 +4,28 @@ declare(strict_types=1);
 
 namespace ApiAutodoc\Generators;
 
-use ApiAutodoc\Enum\FIleExtension;
+use ApiAutodoc\Enum\FileExtension;
 use ApiAutodoc\Exceptions\ApiAutodocException;
-use ReflectionNamedType;
+use ReflectionNamedType, ReflectionMethod;
 
 final class JsonDocumentation extends DocumentationGenerator
 {
     public function process(
-        string $endpoint,
+        ReflectionMethod $endpoint,
         string $title,
         string $typeName,
         array $properties
     ): array
     {
         return (function() use ($endpoint, $title, $typeName, $properties): array {
+            $endpointName = $endpoint->getName();
             $documentation['_comment'] = $title;
-            $documentation['endpoints'][$endpoint]['endpointInputType'] = $typeName;
+            $documentation['endpoints'][$endpointName]['endpointInputType'] = $typeName;
 
             foreach ($properties as $property) {
                 /** @var ?ReflectionNamedType $propertyType */
                 $propertyType = $property->getType();
-                $documentation['endpoints'][$endpoint]['props'][$property->getName()] = [
+                $documentation['endpoints'][$endpointName]['props'][$property->getName()] = [
                     'type' => $propertyType?->getName(),
                     'isRequired' => !$propertyType?->allowsNull(),
                     'description' => $property->getDocComment()

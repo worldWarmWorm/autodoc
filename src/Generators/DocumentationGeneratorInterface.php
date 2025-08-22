@@ -9,7 +9,7 @@ use ReflectionMethod;
 interface DocumentationGeneratorInterface
 {
     public function process(
-        string $endpoint, 
+        ReflectionMethod $endpoint,
         string $title, 
         string $typeName,
         array $properties,

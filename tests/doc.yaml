@@ -1,9 +1,8 @@
-# The documentation of #ApiAutodoc\Examples\ProductController endpoints 
-
+title: "The documentation of #ApiAutodoc\\Controllers\\Product\\ProductController endpoints"
 endpoints:
   getProducts:
     signature: "getProducts"
-    endpointInputType: "ApiAutodoc\\Examples\\ProductParams"
+    endpointInputType: "ApiAutodoc\\Controllers\\Product\\ProductParams"
     props:
       ids:
         type: "array"

@@ -5,52 +5,48 @@ declare(strict_types=1);
 namespace ApiAutodoc\Generators;
 
 use ApiAutodoc\Enum\FileExtension;
-use ReflectionClass, ReflectionNamedType, ReflectionMethod;
+use ApiAutodoc\Exceptions\ApiAutodocException;
+use ReflectionNamedType, ReflectionMethod;
 
 final class YamlDocumentation extends DocumentationGenerator
 {
-    private const string YAML = 'yaml';
-
-    public function generate(string $title, string $process = 'documentation'): void
+    public function process(
+        ReflectionMethod $endpoint,
+        string $title,
+        string $typeName,
+        array $properties
+    ): array
     {
-        $documentation = [];
+        return (function() use ($endpoint, $title, $typeName, $properties): array {
+            $endpointName = $endpoint->getName();
+            $documentation['title'] = $title;
+            $documentation['endpoints'][$endpointName]['signature'] = $endpoint;
+            $documentation['endpoints'][$endpointName]['endpointInputType'] = $typeName;
 
-        foreach ($this->endpoints as $endpoint) {
-            foreach ($endpoint->getParameters() as $parameter) {
-                /** @var ?ReflectionNamedType $type */
-                $type = $parameter->getType();
-
-                if (!$type?->isBuiltin()) {
-                    $typeName = $type->getName();
-
-                    if (class_exists($typeName) || interface_exists($typeName)) {
-                        $reflectionClass = new ReflectionClass($typeName);
-
-                        if ($reflectionClass->implementsInterface('ApiAutodoc\\Params\\ParamsInterface')) {
-                            $endpointName = $endpoint->getName();
-                            $documentation['endpoints'][$endpointName]['signature'] = $endpoint;
-                            $documentation['endpoints'][$endpointName]['endpointInputType'] = $typeName;
-
-                            foreach ($reflectionClass->getProperties() as $property) {
-                                /** @var ?ReflectionNamedType $propertyType */
-                                $propertyType = $property->getType();
-                                $documentation['endpoints'][$endpointName]['props'][$property->getName()] = [
-                                    'type' => $propertyType?->getName(),
-                                    'isRequired' => !$propertyType?->allowsNull(),
-                                    'description' => $property->getDocComment()
-                                ];
-                            }
-                        }
-                    }
-                }
+            foreach ($properties as $property) {
+                /** @var ?ReflectionNamedType $propertyType */
+                $propertyType = $property->getType();
+                $documentation['endpoints'][$endpointName]['props'][$property->getName()] = [
+                    'type' => $propertyType?->getName(),
+                    'isRequired' => !$propertyType?->allowsNull(),
+                    'description' => $property->getDocComment()
+                ];
             }
+
+            return $documentation;
+        })();
+    }
+
+    public function save(string $fileName = 'documentation'): void
+    {
+        if ([] === $this->documentation) {
+            throw new ApiAutodocException('Empty documentation data');
         }
 
-        if ([] !== $documentation) {
-            $content = $title .  $this->arrayToYaml($documentation);
-
-            file_put_contents("$process." . FileExtension::YAML->value, $content);
-        }
+        file_put_contents(
+            "$fileName." . FileExtension::YAML->value,
+            $this->arrayToYaml($this->documentation)
+        );
     }
 
     /**

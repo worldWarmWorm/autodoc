@@ -59,7 +59,7 @@ abstract class DocumentationGenerator implements DocumentationGeneratorInterface
 
                         if ($reflectionClass->implementsInterface('ApiAutodoc\\Params\\ParamsInterface')) {
                             $this->documentation[] = $this->process(
-                                $endpoint->getName(),
+                                $endpoint,
                                 $title,
                                 $typeName,
                                 $reflectionClass->getProperties()

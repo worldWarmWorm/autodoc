@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiAutodoc\Controllers\ProductController;
+namespace ApiAutodoc\Controllers\Product;
 
 use ApiAutodoc\Controllers\EndpointInterface;
 use ApiAutodoc\Exceptions\ApiAutodocException;
@@ -39,9 +39,10 @@ final class ProductController implements EndpointInterface
      */
     public function __construct()
     {
-        $commonTitlePart = "The documentation of #" . self::class . " endpoints";
+        $title = "The documentation of #" . self::class . " endpoints";
+        $fileName = 'doc';
 
-        (new JsonDocumentation($this))->generate($commonTitlePart, 'doc');
-        (new YamlDocumentation($this))->generate("# $commonTitlePart \n\n", 'doc');
+        (new JsonDocumentation($this))->generate($title, $fileName);
+        (new YamlDocumentation($this))->generate($title, $fileName);
     }
 }
