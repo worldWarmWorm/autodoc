@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Generators;
+namespace ApiAutodoc\Exceptions;
 
 class ApiAutodocException extends \Exception
 {

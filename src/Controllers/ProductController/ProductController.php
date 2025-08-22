@@ -1,9 +1,12 @@
 <?php
 
-namespace ApiAutodoc\Examples;
+namespace ApiAutodoc\Controllers\ProductController;
 
-use ApiAutodoc\Endpoints\EndpointInterface;
-use ApiAutodoc\Generators\{ApiAutodocException, JsonDocumentation, YamlDocumentation};
+use ApiAutodoc\Controllers\EndpointInterface;
+use ApiAutodoc\Exceptions\ApiAutodocException;
+use ApiAutodoc\Generators\{
+    JsonDocumentation,
+    YamlDocumentation};
 use Throwable;
 
 final class ProductController implements EndpointInterface
@@ -38,7 +41,7 @@ final class ProductController implements EndpointInterface
     {
         $commonTitlePart = "The documentation of #" . self::class . " endpoints";
 
-        (new JsonDocumentation($this))->generate($commonTitlePart, 'doc');
-        (new YamlDocumentation($this))->generate("# $commonTitlePart \n\n", 'doc');
+        (new JsonDocumentation($this))->generate($commonTitlePart, 'doc', 'doc');
+        (new YamlDocumentation($this))->generate("# $commonTitlePart \n\n", 'doc', 'doc');
     }
 }

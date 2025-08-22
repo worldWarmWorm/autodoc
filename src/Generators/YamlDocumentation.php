@@ -10,7 +10,7 @@ final class YamlDocumentation extends DocumentationGenerator
 {
     private const string YAML = 'yaml';
 
-    public function generate(string $title, string $file = 'documentation'): void
+    public function generate(string $title, string $process = 'documentation'): void
     {
         $documentation = [];
 
@@ -48,7 +48,7 @@ final class YamlDocumentation extends DocumentationGenerator
         if ([] !== $documentation) {
             $content = $title .  $this->arrayToYaml($documentation);
 
-            file_put_contents("$file." . self::YAML, $content);
+            file_put_contents("$process." . self::YAML, $content);
         }
     }
 

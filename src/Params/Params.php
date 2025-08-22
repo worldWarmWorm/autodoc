@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ApiAutodoc\Params;
 
+use ApiAutodoc\Exceptions\ApiAutodocException;
 use ArrayObject, ReflectionClass, ReflectionNamedType;
 
 /**
@@ -16,9 +17,12 @@ abstract class Params extends ArrayObject implements ParamsInterface
 {
     /**
      * @param array<null|int|string, null|int|string> $data
+     *
+     * @throws ApiAutodocException
      */
     public function __construct(array $data = [])
     {
+        // @TODO need test to check filter useless keys
         $data = array_filter(
             $data,
             static fn ($key, $value) => !in_array($value, [null, '', '_'], true),
@@ -29,6 +33,9 @@ abstract class Params extends ArrayObject implements ParamsInterface
         self::validateProperties();
     }
 
+    /**
+     * @throws ApiAutodocException
+     */
     public function validateProperties(): void
     {
         $reflection = new ReflectionClass($this);
@@ -42,7 +49,7 @@ abstract class Params extends ArrayObject implements ParamsInterface
             $name = $property->getName();
 
             if (!$this->offsetExists($name)) {
-                throw new \Exception("Property \"$name\" is required");
+                throw new ApiAutodocException("Property \"$name\" is required");
             }
 
             $value = $this[$name];
@@ -54,7 +61,7 @@ abstract class Params extends ArrayObject implements ParamsInterface
             }
 
             if (false === $this->checkType($value, $type)) {
-                throw new \Exception("Incorrect type for property \"$name\": expected {$type->getName()}, got " . gettype($value));
+                throw new ApiAutodocException("Incorrect type for property \"$name\": expected {$type->getName()}, got " . gettype($value));
             }
         }
     }
@@ -62,7 +69,7 @@ abstract class Params extends ArrayObject implements ParamsInterface
     private function checkType(mixed $value, ReflectionNamedType $type): bool
     {
         if ($type->isBuiltin()) {
-            return match ($type->getName()) {
+            $isTypeOf = match ($type->getName()) {
                 'int' => is_int($value),
                 'string' => is_string($value),
                 'bool' => is_bool($value),
@@ -72,7 +79,9 @@ abstract class Params extends ArrayObject implements ParamsInterface
             };
         } else {
             $class = $type->getName();
-            return $value instanceof $class;
+            $isTypeOf = $value instanceof $class;
         }
+
+        return $isTypeOf;
     }
 }

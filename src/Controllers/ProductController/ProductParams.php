@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Examples;
+namespace ApiAutodoc\Controllers\ProductController;
 
 use ApiAutodoc\Params\Params;
 

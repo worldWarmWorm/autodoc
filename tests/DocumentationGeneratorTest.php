@@ -2,7 +2,7 @@
 
 namespace ApiAutodoc\Tests;
 
-use ApiAutodoc\Examples\ProductController;
+use ApiAutodoc\Controllers\ProductController\ProductController;
 use PHPUnit\Framework\TestCase;
 
 final class DocumentationGeneratorTest extends TestCase

@@ -4,51 +4,40 @@ declare(strict_types=1);
 
 namespace ApiAutodoc\Generators;
 
+use ApiAutodoc\Exceptions\ApiAutodocException;
 use ReflectionClass, ReflectionNamedType, Throwable;
 
 final class JsonDocumentation extends DocumentationGenerator
 {
     private const string JSON = 'json';
-
-    public function generate(string $title, string $file = 'documentation'): void
+    
+    public function process(string $endpoint, string $title, string $typeName, array $properties): callable
     {
-        $documentation = [];
+        return function (string $endpoint, string $title, string $typeName, array $properties): void {
+            $documentation['_comment'] = $title;
+            $documentation['endpoints'][$endpoint]['endpointInputType'] = $typeName;
 
-        foreach ($this->endpoints as $endpoint) {
-            foreach ($endpoint->getParameters() as $parameter) {
-                /** @var ?ReflectionNamedType $type */
-                $type = $parameter->getType();
-
-                if (!$type?->isBuiltin()) {
-                    $typeName = $type->getName();
-
-                    if (class_exists($typeName) || interface_exists($typeName)) {
-                        $reflectionClass = new ReflectionClass($typeName);
-
-                        if ($reflectionClass->implementsInterface('ApiAutodoc\\Params\\ParamsInterface')) {
-                            $endpointName = $endpoint->getName();
-                            $documentation['_comment'] = $title;
-                            $documentation['endpoints'][$endpointName]['endpointInputType'] = $typeName;
-
-                            foreach ($reflectionClass->getProperties() as $property) {
-                                /** @var ?ReflectionNamedType $propertyType */
-                                $propertyType = $property->getType();
-                                $documentation['endpoints'][$endpointName]['props'][$property->getName()] = [
-                                    'type' => $propertyType?->getName(),
-                                    'isRequired' => !$propertyType?->allowsNull(),
-                                    'description' => $property->getDocComment()
-                                ];
-                            }
-                        }
-                    }
-                }
+            foreach ($properties as $property) {
+                /** @var ?ReflectionNamedType $propertyType */
+                $propertyType = $property->getType();
+                $documentation['endpoints'][$endpoint]['props'][$property->getName()] = [
+                    'type' => $propertyType?->getName(),
+                    'isRequired' => !$propertyType?->allowsNull(),
+                    'description' => $property->getDocComment()
+                ];
             }
+        };
+    }
+
+    public function save(string $fileName = 'documentation'): void
+    {
+        if ([] === $this->documentation) {
+            throw new ApiAutodocException('Empty documentation data');
         }
 
-        if ([] !== $documentation) {
-            $content = json_encode($documentation, JSON_PRETTY_PRINT);
-
-            file_put_contents("$file." . self::JSON, $content);
-        }
+        file_put_contents(
+            "$fileName." . self::JSON,
+            json_encode($this->documentation, JSON_PRETTY_PRINT)
+        );
     }
 }
