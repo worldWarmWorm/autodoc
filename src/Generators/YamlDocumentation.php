@@ -26,12 +26,14 @@ final class YamlDocumentation extends DocumentationGenerator
             foreach ($properties as $property) {
                 /** @var ?ReflectionNamedType $propertyType */
                 $propertyType = $property->getType();
-                $documentation['endpoints'][$endpointName]['props'][$property->getName()] = [
+                $documentation['endpoints'][$endpointName]['params'][$property->getName()] = [
                     'type' => $propertyType?->getName(),
                     'isRequired' => !$propertyType?->allowsNull(),
                     'description' => $property->getDocComment()
                 ];
             }
+
+            $documentation['returnType'] = $endpoint->getReturnType();
 
             return $documentation;
         })();

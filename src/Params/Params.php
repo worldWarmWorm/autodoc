@@ -68,9 +68,11 @@ abstract class Params extends ArrayObject implements ParamsInterface
 
     private function checkType(mixed $value, ReflectionNamedType $type): bool
     {
+        $typeName = $type->getName();
+
         if ($type->isBuiltin()) {
-            $isTypeOf = match ($type->getName()) {
-                'int' => is_int($value),
+            $isTypeOf = match ($typeName) {
+                'int' => is_int($value) || $value === null,
                 'string' => is_string($value),
                 'bool' => is_bool($value),
                 'array' => is_array($value),
@@ -78,8 +80,7 @@ abstract class Params extends ArrayObject implements ParamsInterface
                 default => true,
             };
         } else {
-            $class = $type->getName();
-            $isTypeOf = $value instanceof $class;
+            $isTypeOf = $value instanceof $typeName;
         }
 
         return $isTypeOf;

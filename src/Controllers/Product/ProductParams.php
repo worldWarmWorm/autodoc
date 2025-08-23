@@ -19,7 +19,7 @@ class ProductParams extends Params
      *
      * @var array<int, int>
      */
-    public ?array $ids;
+    public array $ids;
 
     /**
      * Category of items
@@ -29,10 +29,10 @@ class ProductParams extends Params
     /**
      * Count limit of items
      */
-    public int $limit;
+    public ?int $limit = null;
 
     /**
      * Offset of items
      */
-    public int $offset;
+    public ?int $offset = null;
 }
