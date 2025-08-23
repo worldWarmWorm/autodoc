@@ -20,7 +20,6 @@ final class YamlDocumentation extends DocumentationGenerator
         return (function() use ($endpoint, $title, $typeName, $properties): array {
             $endpointName = $endpoint->getName();
             $documentation['title'] = $title;
-            $documentation['endpoints'][$endpointName]['signature'] = $endpoint;
             $documentation['endpoints'][$endpointName]['endpointInputType'] = $typeName;
 
             foreach ($properties as $property) {
