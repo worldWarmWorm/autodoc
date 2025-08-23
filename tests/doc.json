@@ -4,10 +4,10 @@
         "endpoints": {
             "getProducts": {
                 "endpointInputType": "ApiAutodoc\\Controllers\\Product\\ProductParams",
-                "props": {
+                "params": {
                     "ids": {
                         "type": "array",
-                        "isRequired": false,
+                        "isRequired": true,
                         "description": "\/**\n     * Unique ids of items\n     *\n     * @var array<int, int>\n     *\/"
                     },
                     "category": {
@@ -17,15 +17,16 @@
                     },
                     "limit": {
                         "type": "int",
-                        "isRequired": true,
+                        "isRequired": false,
                         "description": "\/**\n     * Count limit of items\n     *\/"
                     },
                     "offset": {
                         "type": "int",
-                        "isRequired": true,
+                        "isRequired": false,
                         "description": "\/**\n     * Offset of items\n     *\/"
                     }
-                }
+                },
+                "returnType": "array"
             }
         }
     }

@@ -22,7 +22,6 @@ abstract class Params extends ArrayObject implements ParamsInterface
      */
     public function __construct(array $data = [])
     {
-        // @TODO need test to check filter useless keys
         $data = array_filter(
             $data,
             static fn ($key, $value) => !in_array($value, [null, '', '_'], true),

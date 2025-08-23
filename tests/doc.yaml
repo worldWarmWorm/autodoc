@@ -3,10 +3,10 @@ endpoints:
   getProducts:
     signature: "getProducts"
     endpointInputType: "ApiAutodoc\\Controllers\\Product\\ProductParams"
-    props:
+    params:
       ids:
         type: "array"
-        isRequired: false
+        isRequired: true
         description: "/**
      * Unique ids of items
      *
@@ -20,13 +20,14 @@ endpoints:
      */"
       limit:
         type: "int"
-        isRequired: true
+        isRequired: false
         description: "/**
      * Count limit of items
      */"
       offset:
         type: "int"
-        isRequired: true
+        isRequired: false
         description: "/**
      * Offset of items
      */"
+    returnType: "array"

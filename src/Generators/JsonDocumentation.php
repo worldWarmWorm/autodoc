@@ -32,7 +32,7 @@ final class JsonDocumentation extends DocumentationGenerator
                 ];
             }
 
-            $documentation['returnType'] = $endpoint->getReturnType();
+            $documentation['endpoints'][$endpointName]['returnType'] = $endpoint->getReturnType()->getName();
 
             return $documentation;
         })();
