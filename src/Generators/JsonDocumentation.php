@@ -17,9 +17,10 @@ final class JsonDocumentation extends DocumentationGenerator
         array $properties
     ): array
     {
-        return (function() use ($endpoint, $title, $typeName, $properties): array {
+        return (static function() use ($endpoint, $title, $typeName, $properties): array {
             $endpointName = $endpoint->getName();
             $documentation['_comment'] = $title;
+            $documentation['endpoints'][$endpointName]['annotation'] = $endpoint->getDocComment();
             $documentation['endpoints'][$endpointName]['endpointInputType'] = $typeName;
 
             foreach ($properties as $property) {
@@ -28,7 +29,7 @@ final class JsonDocumentation extends DocumentationGenerator
                 $documentation['endpoints'][$endpointName]['params'][$property->getName()] = [
                     'type' => $propertyType?->getName(),
                     'isRequired' => !$propertyType?->allowsNull(),
-                    'description' => $property->getDocComment()
+                    'annotation' => $property->getDocComment()
                 ];
             }
 

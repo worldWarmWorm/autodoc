@@ -3,27 +3,28 @@
         "_comment": "The documentation of #ApiAutodoc\\Controllers\\Product\\ProductController endpoints",
         "endpoints": {
             "getProducts": {
+                "annotation": "\/**\n     * @template TKey of array-key\n     * @template TValue\n     *\n     * @param ProductParams<TKey, TValue> $params\n     *\n     * @return array{success: bool, products: string}\n     *\/",
                 "endpointInputType": "ApiAutodoc\\Controllers\\Product\\ProductParams",
                 "params": {
                     "ids": {
                         "type": "array",
                         "isRequired": true,
-                        "description": "\/**\n     * Unique ids of items\n     *\n     * @var array<int, int>\n     *\/"
+                        "annotation": "\/**\n     * Unique ids of items\n     *\n     * @var array<int, int>\n     *\/"
                     },
                     "category": {
                         "type": "string",
                         "isRequired": true,
-                        "description": "\/**\n     * Category of items\n     *\/"
+                        "annotation": "\/**\n     * Category of items\n     *\/"
                     },
                     "limit": {
                         "type": "int",
                         "isRequired": false,
-                        "description": "\/**\n     * Count limit of items\n     *\/"
+                        "annotation": "\/**\n     * Count limit of items\n     *\/"
                     },
                     "offset": {
                         "type": "int",
                         "isRequired": false,
-                        "description": "\/**\n     * Offset of items\n     *\/"
+                        "annotation": "\/**\n     * Offset of items\n     *\/"
                     }
                 },
                 "returnType": "array"

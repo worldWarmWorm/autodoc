@@ -1,13 +1,20 @@
 title: "The documentation of #ApiAutodoc\\Controllers\\Product\\ProductController endpoints"
 endpoints:
   getProducts:
-    signature: "getProducts"
+    annotation: "/**
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param ProductParams<TKey, TValue> $params
+     *
+     * @return array{success: bool, products: string}
+     */"
     endpointInputType: "ApiAutodoc\\Controllers\\Product\\ProductParams"
     params:
       ids:
         type: "array"
         isRequired: true
-        description: "/**
+        annotation: "/**
      * Unique ids of items
      *
      * @var array<int, int>
@@ -15,19 +22,19 @@ endpoints:
       category:
         type: "string"
         isRequired: true
-        description: "/**
+        annotation: "/**
      * Category of items
      */"
       limit:
         type: "int"
         isRequired: false
-        description: "/**
+        annotation: "/**
      * Count limit of items
      */"
       offset:
         type: "int"
         isRequired: false
-        description: "/**
+        annotation: "/**
      * Offset of items
      */"
     returnType: "array"
