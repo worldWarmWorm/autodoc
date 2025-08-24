@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Autodoc\Endpoints\Product;
 
-use Autodoc\Autodoc\{JsonAutodoc, YamlAutodoc};
-use Autodoc\Autodoc\Exceptions\AutodocException;
+use Autodoc\{YamlAutodoc, JsonAutodoc};
 use Autodoc\Endpoints\EndpointInterface;
+use Autodoc\Exceptions\AutodocException;
 use Throwable;
 
 final class ProductController implements EndpointInterface

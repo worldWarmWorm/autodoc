@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Autodoc\Autodoc;
+namespace Autodoc;
 
-use Autodoc\Autodoc\Enum\FileExtension;
-use Autodoc\Autodoc\Exceptions\AutodocException;
-use ReflectionMethod;
-use ReflectionNamedType;
+use Autodoc\Enum\FileExtension;
+use Autodoc\Exceptions\AutodocException;
+use ReflectionMethod, ReflectionNamedType;
 
 final class JsonAutodoc extends Autodoc
 {

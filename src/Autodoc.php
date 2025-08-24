@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Autodoc\Autodoc;
+namespace Autodoc;
 
-use Autodoc\Autodoc\Exceptions\AutodocException;
 use Autodoc\Endpoints\EndpointInterface;
+use Autodoc\Exceptions\AutodocException;
 use ReflectionClass, ReflectionMethod, ReflectionNamedType;
 
 abstract class Autodoc implements AutodocInterface
@@ -55,7 +55,7 @@ abstract class Autodoc implements AutodocInterface
                     if (class_exists($typeName) || interface_exists($typeName)) {
                         $reflectionClass = new ReflectionClass($typeName);
 
-                        if ($reflectionClass->implementsInterface('Autodoc\\Autodoc\\Params\\ParamsInterface')) {
+                        if ($reflectionClass->implementsInterface('Autodoc\\Params\\ParamsInterface')) {
                             $this->documentation[] = $this->process(
                                 $endpoint,
                                 $title,
