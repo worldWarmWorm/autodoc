@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Params;
+namespace ApiAutodoc\Autodoc\Params;
 
-use ApiAutodoc\Exceptions\ApiAutodocException;
+use ApiAutodoc\Autodoc\Exceptions\AutodocException;
 use ArrayObject, ReflectionClass, ReflectionNamedType;
 
 /**
@@ -18,7 +18,7 @@ abstract class Params extends ArrayObject implements ParamsInterface
     /**
      * @param array<null|int|string, null|int|string> $data
      *
-     * @throws ApiAutodocException
+     * @throws AutodocException
      */
     public function __construct(array $data = [])
     {
@@ -33,7 +33,7 @@ abstract class Params extends ArrayObject implements ParamsInterface
     }
 
     /**
-     * @throws ApiAutodocException
+     * @throws AutodocException
      */
     public function validateProperties(): void
     {
@@ -48,7 +48,7 @@ abstract class Params extends ArrayObject implements ParamsInterface
             $name = $property->getName();
 
             if (!$this->offsetExists($name)) {
-                throw new ApiAutodocException("Property \"$name\" is required");
+                throw new AutodocException("Property \"$name\" is required");
             }
 
             $value = $this[$name];
@@ -60,7 +60,7 @@ abstract class Params extends ArrayObject implements ParamsInterface
             }
 
             if (false === $this->checkType($value, $type)) {
-                throw new ApiAutodocException("Incorrect type for property \"$name\": expected {$type->getName()}, got " . gettype($value));
+                throw new AutodocException("Incorrect type for property \"$name\": expected {$type->getName()}, got " . gettype($value));
             }
         }
     }

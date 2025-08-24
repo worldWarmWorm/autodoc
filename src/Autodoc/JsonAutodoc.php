@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Generators;
+namespace ApiAutodoc\Autodoc;
 
-use ApiAutodoc\Enum\FileExtension;
-use ApiAutodoc\Exceptions\ApiAutodocException;
-use ReflectionNamedType, ReflectionMethod;
+use ApiAutodoc\Autodoc\Enum\FileExtension;
+use ApiAutodoc\Autodoc\Exceptions\AutodocException;
+use ReflectionMethod;
+use ReflectionNamedType;
 
 final class JsonAutodoc extends Autodoc
 {
@@ -39,10 +40,10 @@ final class JsonAutodoc extends Autodoc
         })();
     }
 
-    public function save(string $fileName = 'documentation'): void
+    public function save(string $fileName = 'autodoc'): void
     {
         if ([] === $this->documentation) {
-            throw new ApiAutodocException('Empty documentation data');
+            throw new AutodocException('Empty documentation data');
         }
 
         file_put_contents(

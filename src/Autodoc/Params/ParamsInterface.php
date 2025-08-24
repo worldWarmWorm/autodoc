@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Params;
+namespace ApiAutodoc\Autodoc\Params;
 
 interface ParamsInterface
 {

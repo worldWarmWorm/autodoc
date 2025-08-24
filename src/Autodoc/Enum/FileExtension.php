@@ -1,6 +1,8 @@
 <?php
 
-namespace ApiAutodoc\Enum;
+declare(strict_types=1);
+
+namespace ApiAutodoc\Autodoc\Enum;
 
 enum FileExtension: string
 {

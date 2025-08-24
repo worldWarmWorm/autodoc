@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace ApiAutodoc\Tests;
 
-use ApiAutodoc\Controllers\Product\ProductParams;
+use ApiAutodoc\Endpoints\Product\ProductParams;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-class ParamsTest extends TestCase
+final class ParamsTest extends TestCase
 {
     #[DataProvider('paramsProvider')]
     public function testParamsConstructor(array $paramsInput, array $paramsExpected): void

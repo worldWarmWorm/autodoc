@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Controllers;
+namespace ApiAutodoc\Endpoints;
 
 interface EndpointInterface
 {

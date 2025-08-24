@@ -1,12 +1,12 @@
 <?php
 
-namespace ApiAutodoc\Controllers\Product;
+declare(strict_types=1);
 
-use ApiAutodoc\Controllers\EndpointInterface;
-use ApiAutodoc\Exceptions\ApiAutodocException;
-use ApiAutodoc\Generators\{
-    JsonAutodoc,
-    YamlAutodoc};
+namespace ApiAutodoc\Endpoints\Product;
+
+use ApiAutodoc\Autodoc\{JsonAutodoc, YamlAutodoc};
+use ApiAutodoc\Autodoc\Exceptions\AutodocException;
+use ApiAutodoc\Endpoints\EndpointInterface;
 use Throwable;
 
 final class ProductController implements EndpointInterface
@@ -35,14 +35,13 @@ final class ProductController implements EndpointInterface
     }
 
     /**
-     * @throws Throwable|ApiAutodocException
+     * @throws AutodocException|Throwable
      */
     public function __construct()
     {
         $title = "The documentation of #" . self::class . " endpoints";
-        $fileName = 'doc';
 
-        (new JsonAutodoc($this))->generate($title, $fileName);
-        (new YamlAutodoc($this))->generate($title, $fileName);
+        (new JsonAutodoc($this))->generate($title);
+        (new YamlAutodoc($this))->generate($title);
     }
 }

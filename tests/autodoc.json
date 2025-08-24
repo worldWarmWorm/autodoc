@@ -1,10 +1,10 @@
 [
     {
-        "_comment": "The documentation of #ApiAutodoc\\Controllers\\Product\\ProductController endpoints",
+        "_comment": "The documentation of #ApiAutodoc\\Endpoints\\Product\\ProductController endpoints",
         "endpoints": {
             "getProducts": {
                 "annotation": "\/**\n     * @template TKey of array-key\n     * @template TValue\n     *\n     * @param ProductParams<TKey, TValue> $params\n     *\n     * @return array{success: bool, products: string}\n     *\/",
-                "endpointInputType": "ApiAutodoc\\Controllers\\Product\\ProductParams",
+                "endpointInputType": "ApiAutodoc\\Endpoints\\Product\\ProductParams",
                 "params": {
                     "ids": {
                         "type": "array",

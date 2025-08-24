@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Generators;
+namespace ApiAutodoc\Autodoc;
 
-use ApiAutodoc\Controllers\EndpointInterface;
-use ApiAutodoc\Exceptions\ApiAutodocException;
-use ReflectionClass;
-use ReflectionMethod;
-use ReflectionNamedType;
+use ApiAutodoc\Autodoc\Exceptions\AutodocException;
+use ApiAutodoc\Endpoints\EndpointInterface;
+use ReflectionClass, ReflectionMethod, ReflectionNamedType;
 
 abstract class Autodoc implements AutodocInterface
 {
@@ -20,7 +18,7 @@ abstract class Autodoc implements AutodocInterface
     protected array $documentation = [];
 
     /**
-     * @throws ApiAutodocException
+     * @throws AutodocException
      */
     public function __construct(EndpointInterface $controller, ?string $methodPartNameFilter = null)
     {
@@ -31,7 +29,7 @@ abstract class Autodoc implements AutodocInterface
         );
 
         if ($endpoints === []) {
-            throw new ApiAutodocException("Endpoints not found");
+            throw new AutodocException("Endpoints not found");
         }
 
         if (!is_null($methodPartNameFilter)) {
@@ -44,7 +42,7 @@ abstract class Autodoc implements AutodocInterface
         $this->endpoints = $endpoints;
     }
 
-    public function generate(string $title, string $fileName = 'documentation'): void
+    public function generate(string $title, string $fileName = 'autodoc'): void
     {
         foreach ($this->endpoints as $endpoint) {
             foreach ($endpoint->getParameters() as $parameter) {
@@ -57,7 +55,7 @@ abstract class Autodoc implements AutodocInterface
                     if (class_exists($typeName) || interface_exists($typeName)) {
                         $reflectionClass = new ReflectionClass($typeName);
 
-                        if ($reflectionClass->implementsInterface('ApiAutodoc\\Params\\ParamsInterface')) {
+                        if ($reflectionClass->implementsInterface('ApiAutodoc\\Autodoc\\Params\\ParamsInterface')) {
                             $this->documentation[] = $this->process(
                                 $endpoint,
                                 $title,
