@@ -8,6 +8,8 @@ use Autodoc\Autodoc\Exceptions\AutodocException;
 use ArrayObject, ReflectionClass, ReflectionNamedType;
 
 /**
+ * Converts method's array of params into objects with strict typed properties
+ *
  * @template TKey of array-key
  * @template TValue
  *
