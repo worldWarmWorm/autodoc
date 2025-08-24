@@ -10,6 +10,9 @@ use ReflectionMethod, ReflectionNamedType;
 
 final class JsonAutodoc extends Autodoc
 {
+    /**
+     * @inheritDoc
+     */
     public function process(
         ReflectionMethod $endpoint,
         string $title,
@@ -18,6 +21,7 @@ final class JsonAutodoc extends Autodoc
     ): array
     {
         return (static function() use ($endpoint, $title, $typeName, $properties): array {
+            $documentation = [];
             $endpointName = $endpoint->getName();
             $documentation['_comment'] = $title;
             $documentation['endpoints'][$endpointName]['annotation'] = $endpoint->getDocComment();
@@ -33,7 +37,9 @@ final class JsonAutodoc extends Autodoc
                 ];
             }
 
-            $documentation['endpoints'][$endpointName]['returnType'] = $endpoint->getReturnType()->getName();
+            /** @var ReflectionNamedType $returnType */
+            $returnType = $endpoint->getReturnType();
+            $documentation['endpoints'][$endpointName]['returnType'] = $returnType->getName();
 
             return $documentation;
         })();

@@ -10,6 +10,10 @@ use PHPUnit\Framework\TestCase;
 
 final class ParamsTest extends TestCase
 {
+    /**
+     * @param array<mixed> $paramsInput
+     * @param array<mixed> $paramsExpected
+     */
     #[DataProvider('paramsProvider')]
     public function testParamsConstructor(array $paramsInput, array $paramsExpected): void
     {
@@ -25,7 +29,7 @@ final class ParamsTest extends TestCase
     public static function paramsProvider(): \Generator
     {
         yield [
-            [null => '', '' => null, 'ids' => [1, 2], 'category' => 'Category 1', 'limit' => null, 'offset' => null],
+            [null => '', 'ids' => [1, 2], 'category' => 'Category 1', 'limit' => null, 'offset' => null],
             ['ids' => [1, 2], 'category' => 'Category 1', 'limit' => null, 'offset' => null]
         ];
     }

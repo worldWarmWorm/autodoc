@@ -15,6 +15,9 @@ abstract class Autodoc implements AutodocInterface
      */
     protected array $endpoints;
 
+    /**
+     * @var array<mixed>
+     */
     protected array $documentation = [];
 
     /**
@@ -73,6 +76,8 @@ abstract class Autodoc implements AutodocInterface
 
     /**
      * Method delivers all generated data for documentation in case you need to output is somewhere
+     *
+     * @return array<mixed>
      */
     public function getDocumentation(): array
     {

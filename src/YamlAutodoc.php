@@ -6,10 +6,13 @@ namespace Autodoc;
 
 use Autodoc\Enum\FileExtension;
 use Autodoc\Exceptions\AutodocException;
-use ReflectionMethod, ReflectionNamedType;
+use ReflectionMethod, ReflectionNamedType, ReflectionProperty;
 
 final class YamlAutodoc extends Autodoc
 {
+    /**
+     * @inheritDoc
+     */
     public function process(
         ReflectionMethod $endpoint,
         string $title,
@@ -18,6 +21,7 @@ final class YamlAutodoc extends Autodoc
     ): array
     {
         return (static function() use ($endpoint, $title, $typeName, $properties): array {
+            $documentation = [];
             $endpointName = $endpoint->getName();
             $documentation['title'] = $title;
             $documentation['endpoints'][$endpointName]['annotation'] = $endpoint->getDocComment();
@@ -33,7 +37,9 @@ final class YamlAutodoc extends Autodoc
                 ];
             }
 
-            $documentation['endpoints'][$endpointName]['returnType'] = $endpoint->getReturnType()->getName();
+            /** @var ReflectionNamedType $returnType */
+            $returnType = $endpoint->getReturnType();
+            $documentation['endpoints'][$endpointName]['returnType'] = $returnType->getName();
 
             return $documentation;
         })();
