@@ -22,12 +22,12 @@
   },
   "autoload": {
     "psr-4": {
-      "ApiAutodoc\\": "src/"
+      "Autodoc\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "ApiAutodoc\\Tests\\": "tests/"
+      "Autodoc\\Tests\\": "tests/"
     }
   }
 }

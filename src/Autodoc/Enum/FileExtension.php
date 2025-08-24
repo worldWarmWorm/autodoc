@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Autodoc\Enum;
+namespace Autodoc\Autodoc\Enum;
 
 enum FileExtension: string
 {

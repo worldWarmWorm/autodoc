@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Autodoc;
+namespace Autodoc\Autodoc;
 
-use ApiAutodoc\Autodoc\Enum\FileExtension;
-use ApiAutodoc\Autodoc\Exceptions\AutodocException;
+use Autodoc\Autodoc\Enum\FileExtension;
+use Autodoc\Autodoc\Exceptions\AutodocException;
 use ReflectionMethod;
 use ReflectionNamedType;
 

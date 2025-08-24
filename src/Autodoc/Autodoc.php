@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Autodoc;
+namespace Autodoc\Autodoc;
 
-use ApiAutodoc\Autodoc\Exceptions\AutodocException;
-use ApiAutodoc\Endpoints\EndpointInterface;
+use Autodoc\Autodoc\Exceptions\AutodocException;
+use Autodoc\Endpoints\EndpointInterface;
 use ReflectionClass, ReflectionMethod, ReflectionNamedType;
 
 abstract class Autodoc implements AutodocInterface
@@ -55,7 +55,7 @@ abstract class Autodoc implements AutodocInterface
                     if (class_exists($typeName) || interface_exists($typeName)) {
                         $reflectionClass = new ReflectionClass($typeName);
 
-                        if ($reflectionClass->implementsInterface('ApiAutodoc\\Autodoc\\Params\\ParamsInterface')) {
+                        if ($reflectionClass->implementsInterface('Autodoc\\Autodoc\\Params\\ParamsInterface')) {
                             $this->documentation[] = $this->process(
                                 $endpoint,
                                 $title,
@@ -71,6 +71,9 @@ abstract class Autodoc implements AutodocInterface
         $this->save($fileName);
     }
 
+    /**
+     * Method delivers all generated data for documentation in case you need to output is somewhere
+     */
     public function getDocumentation(): array
     {
         return $this->documentation;

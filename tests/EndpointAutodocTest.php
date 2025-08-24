@@ -1,8 +1,8 @@
 <?php
 
-namespace ApiAutodoc\Tests;
+namespace Autodoc\Tests;
 
-use ApiAutodoc\Endpoints\Product\ProductController;
+use Autodoc\Endpoints\Product\ProductController;
 use PHPUnit\Framework\TestCase;
 
 final class EndpointAutodocTest extends TestCase

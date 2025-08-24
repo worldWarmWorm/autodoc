@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Endpoints\Product;
+namespace Autodoc\Endpoints\Product;
 
-use ApiAutodoc\Autodoc\Params\Params;
+use Autodoc\Autodoc\Params\Params;
 
 /**
  * @template TKey of array-key

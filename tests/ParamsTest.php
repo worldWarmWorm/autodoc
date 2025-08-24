@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Tests;
+namespace Autodoc\Tests;
 
-use ApiAutodoc\Endpoints\Product\ProductParams;
+use Autodoc\Endpoints\Product\ProductParams;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

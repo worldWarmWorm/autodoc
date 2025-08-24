@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Endpoints\Product;
+namespace Autodoc\Endpoints\Product;
 
-use ApiAutodoc\Autodoc\{JsonAutodoc, YamlAutodoc};
-use ApiAutodoc\Autodoc\Exceptions\AutodocException;
-use ApiAutodoc\Endpoints\EndpointInterface;
+use Autodoc\Autodoc\{JsonAutodoc, YamlAutodoc};
+use Autodoc\Autodoc\Exceptions\AutodocException;
+use Autodoc\Endpoints\EndpointInterface;
 use Throwable;
 
 final class ProductController implements EndpointInterface

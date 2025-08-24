@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Autodoc\Params;
+namespace Autodoc\Autodoc\Params;
 
-use ApiAutodoc\Autodoc\Exceptions\AutodocException;
+use Autodoc\Autodoc\Exceptions\AutodocException;
 use ArrayObject, ReflectionClass, ReflectionNamedType;
 
 /**

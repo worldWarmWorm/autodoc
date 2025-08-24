@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ApiAutodoc\Autodoc;
+namespace Autodoc\Autodoc;
 
 use ReflectionMethod;
 
