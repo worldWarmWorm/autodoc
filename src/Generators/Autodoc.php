@@ -10,7 +10,7 @@ use ReflectionClass;
 use ReflectionMethod;
 use ReflectionNamedType;
 
-abstract class DocumentationGenerator implements DocumentationGeneratorInterface
+abstract class Autodoc implements AutodocInterface
 {
     /**
      * @var array<ReflectionMethod>
@@ -71,5 +71,10 @@ abstract class DocumentationGenerator implements DocumentationGeneratorInterface
         }
 
         $this->save($fileName);
+    }
+
+    public function getDocumentation(): array
+    {
+        return $this->documentation;
     }
 }

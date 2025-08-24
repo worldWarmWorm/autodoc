@@ -8,7 +8,7 @@ use ApiAutodoc\Enum\FileExtension;
 use ApiAutodoc\Exceptions\ApiAutodocException;
 use ReflectionNamedType, ReflectionMethod;
 
-final class YamlDocumentation extends DocumentationGenerator
+final class YamlAutodoc extends Autodoc
 {
     public function process(
         ReflectionMethod $endpoint,

@@ -8,7 +8,7 @@ use ApiAutodoc\Enum\FileExtension;
 use ApiAutodoc\Exceptions\ApiAutodocException;
 use ReflectionNamedType, ReflectionMethod;
 
-final class JsonDocumentation extends DocumentationGenerator
+final class JsonAutodoc extends Autodoc
 {
     public function process(
         ReflectionMethod $endpoint,

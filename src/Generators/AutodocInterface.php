@@ -6,7 +6,7 @@ namespace ApiAutodoc\Generators;
 
 use ReflectionMethod;
 
-interface DocumentationGeneratorInterface
+interface AutodocInterface
 {
     public function process(
         ReflectionMethod $endpoint,
