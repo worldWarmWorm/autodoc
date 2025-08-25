@@ -75,7 +75,7 @@ abstract class Autodoc implements AutodocInterface
     }
 
     /**
-     * Method delivers all generated data for documentation in case you need to output is somewhere
+     * Method delivers all generated data for documentation in case you need to output it somewhere
      *
      * @return array<mixed>
      */

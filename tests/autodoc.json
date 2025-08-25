@@ -4,7 +4,7 @@
         "endpoints": {
             "getProducts": {
                 "annotation": "\/**\n     * @template TKey of array-key\n     * @template TValue\n     *\n     * @param ProductParams<TKey, TValue> $params\n     *\n     * @return array{success: bool, products: string}\n     *\/",
-                "endpointInputType": "Autodoc\\Endpoints\\Product\\ProductParams",
+                "inputType": "Autodoc\\Endpoints\\Product\\ProductParams",
                 "params": {
                     "ids": {
                         "type": "array",

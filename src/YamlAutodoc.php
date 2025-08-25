@@ -25,7 +25,7 @@ final class YamlAutodoc extends Autodoc
             $endpointName = $endpoint->getName();
             $documentation['title'] = $title;
             $documentation['endpoints'][$endpointName]['annotation'] = $endpoint->getDocComment();
-            $documentation['endpoints'][$endpointName]['endpointInputType'] = $typeName;
+            $documentation['endpoints'][$endpointName]['inputType'] = $typeName;
 
             foreach ($properties as $property) {
                 /** @var ?ReflectionNamedType $propertyType */
@@ -37,9 +37,9 @@ final class YamlAutodoc extends Autodoc
                 ];
             }
 
-            /** @var ReflectionNamedType $returnType */
+            /** @var ?ReflectionNamedType $returnType */
             $returnType = $endpoint->getReturnType();
-            $documentation['endpoints'][$endpointName]['returnType'] = $returnType->getName();
+            $documentation['endpoints'][$endpointName]['returnType'] = $returnType?->getName();
 
             return $documentation;
         })();
