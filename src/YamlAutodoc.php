@@ -6,7 +6,7 @@ namespace Autodoc;
 
 use Autodoc\Enum\FileExtension;
 use Autodoc\Exceptions\AutodocException;
-use ReflectionMethod, ReflectionNamedType, ReflectionProperty;
+use ReflectionMethod, ReflectionNamedType;
 
 final class YamlAutodoc extends Autodoc
 {
