@@ -1,8 +1,8 @@
 {
   "name": "world-warm-worm/autodoc",
-  "description": "Generates documentation of endpoint methods in several file formats",
+  "description": "Generates documentation of classes  methods in several file formats",
   "type": "library",
-  "homepage": "https://github.com/worldWarmWorm/api-autodoc",
+  "homepage": "https://github.com/worldWarmWorm/autodoc",
   "license": "Apache-2.0",
   "authors": [
     {
