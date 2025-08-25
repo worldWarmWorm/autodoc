@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Autodoc\Endpoints\Product;
+namespace Autodoc\Tests\Endpoints\Product;
 
-use Autodoc\{YamlAutodoc, JsonAutodoc};
-use Autodoc\Endpoints\EndpointInterface;
+use Autodoc\{
+    JsonAutodoc,
+    YamlAutodoc};
+use Autodoc\EndpointInterface;
 use Autodoc\Exceptions\AutodocException;
 use Throwable;
 
@@ -13,7 +15,7 @@ final class ProductController implements EndpointInterface
 {
     /**
      * @template TKey of array-key
-     * @template TValue
+     * @template TValue of null|int|string|array
      *
      * @param ProductParams<TKey, TValue> $params
      *

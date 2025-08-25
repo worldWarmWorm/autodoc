@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Autodoc\Endpoints\Product;
+namespace Autodoc\Tests\Endpoints\Product;
 
 use Autodoc\Params\Params;
 
 /**
  * @template TKey of array-key
- * @template TValue
+ * @template TValue of null|int|string|array
  *
  * @extends Params<TKey, TValue>
  */

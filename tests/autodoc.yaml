@@ -1,15 +1,15 @@
-title: "The documentation of #Autodoc\\Endpoints\\Product\\ProductController endpoints"
+title: "The documentation of #Autodoc\\Tests\\Endpoints\\Product\\ProductController endpoints"
 endpoints:
   getProducts:
     annotation: "/**
      * @template TKey of array-key
-     * @template TValue
+     * @template TValue of null|int|string|array
      *
      * @param ProductParams<TKey, TValue> $params
      *
      * @return array{success: bool, products: string}
      */"
-    inputType: "Autodoc\\Endpoints\\Product\\ProductParams"
+    inputType: "Autodoc\\Tests\\Endpoints\\Product\\ProductParams"
     params:
       ids:
         type: "array"

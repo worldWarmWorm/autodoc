@@ -4,19 +4,28 @@ declare(strict_types=1);
 
 namespace Autodoc\Tests;
 
-use Autodoc\Endpoints\Product\ProductParams;
+use Autodoc\Tests\Endpoints\Product\ProductParams;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class ParamsTest extends TestCase
 {
     /**
-     * @param array<mixed> $paramsInput
-     * @param array<mixed> $paramsExpected
+     * @template TKey of array-key
+     * @template TValue of null|int|string|array
+     *
+     * @param array<TKey|null, TValue> $paramsInput
+     * @param array<TKey, TValue> $paramsExpected
      */
     #[DataProvider('paramsProvider')]
     public function testParamsConstructor(array $paramsInput, array $paramsExpected): void
     {
+        /**
+         * @template TKey of array-key
+         * @template TValue of null|int|string|array
+         *
+         * @var ProductParams<TKey, TValue> $productParams
+         */
         $productParams = new ProductParams($paramsInput);
         self::assertEquals(count($paramsExpected), $productParams->count());
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Autodoc;
 
-use Autodoc\Endpoints\EndpointInterface;
 use Autodoc\Exceptions\AutodocException;
 use ReflectionClass, ReflectionMethod, ReflectionNamedType;
 
