@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Autodoc;
 
-use Autodoc\Enum\FileExtension;
 use Autodoc\Exceptions\AutodocException;
 use ReflectionMethod, ReflectionNamedType;
 
@@ -30,16 +29,24 @@ final class JsonAutodoc extends Autodoc
             foreach ($properties as $property) {
                 /** @var ?ReflectionNamedType $propertyType */
                 $propertyType = $property->getType();
+
+                if (null === $propertyType) {
+                    continue;
+                }
+
                 $documentation['endpoints'][$endpointName]['params'][$property->getName()] = [
-                    'type' => $propertyType?->getName(),
-                    'isRequired' => !$propertyType?->allowsNull(),
+                    'type' => $propertyType->getName(),
+                    'isRequired' => !$propertyType->allowsNull(),
                     'annotation' => $property->getDocComment()
                 ];
             }
 
             /** @var ?ReflectionNamedType $returnType */
             $returnType = $endpoint->getReturnType();
-            $documentation['endpoints'][$endpointName]['returnType'] = $returnType?->getName();
+
+            if (null !== $returnType) {
+                $documentation['endpoints'][$endpointName]['returnType'] = $returnType->getName();
+            }
 
             return $documentation;
         })();
@@ -52,7 +59,7 @@ final class JsonAutodoc extends Autodoc
         }
 
         file_put_contents(
-            "$fileName." . FileExtension::JSON->value,
+            "$fileName." . Autodoc::JSON,
             json_encode($this->documentation, JSON_PRETTY_PRINT)
         );
     }

@@ -67,19 +67,33 @@ abstract class Params extends ArrayObject implements ParamsInterface
         }
     }
 
-    private function checkType(mixed $value, ReflectionNamedType $type): bool
+    /**
+     * @param mixed $value
+     */
+    private function checkType($value, ReflectionNamedType $type): bool
     {
         $typeName = $type->getName();
 
         if ($type->isBuiltin()) {
-            $isTypeOf = match ($typeName) {
-                'int' => is_int($value) || $value === null,
-                'string' => is_string($value),
-                'bool' => is_bool($value),
-                'array' => is_array($value),
-                'float' => is_float($value),
-                default => true,
-            };
+            switch ($typeName) {
+                case 'int':
+                    $isTypeOf = is_int($value) || $value === null;
+                    break;
+                case 'string':
+                    $isTypeOf = is_string($value);
+                    break;
+                case 'bool':
+                    $isTypeOf = is_bool($value);
+                    break;
+                case 'array':
+                    $isTypeOf = is_array($value);
+                    break;
+                case 'float':
+                    $isTypeOf = is_float($value);
+                    break;
+                default:
+                    $isTypeOf = true;
+            }
         } else {
             $isTypeOf = $value instanceof $typeName;
         }

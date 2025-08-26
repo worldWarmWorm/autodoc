@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Autodoc\Tests;
 
+use Autodoc\Exceptions\AutodocException;
 use Autodoc\Tests\Endpoints\Product\ProductParams;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class ParamsTest extends TestCase
@@ -16,8 +16,10 @@ final class ParamsTest extends TestCase
      *
      * @param array<TKey|null, TValue> $paramsInput
      * @param array<TKey, TValue> $paramsExpected
+     *
+     * @dataProvider paramsProvider
+     * @throws AutodocException
      */
-    #[DataProvider('paramsProvider')]
     public function testParamsConstructor(array $paramsInput, array $paramsExpected): void
     {
         /**

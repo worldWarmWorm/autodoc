@@ -9,6 +9,9 @@ use ReflectionClass, ReflectionMethod, ReflectionNamedType;
 
 abstract class Autodoc implements AutodocInterface
 {
+    public const JSON = 'json';
+    public const YAML = 'yaml';
+
     /**
      * @var array<ReflectionMethod>
      */
@@ -34,7 +37,7 @@ abstract class Autodoc implements AutodocInterface
             throw new AutodocException("Endpoints not found");
         }
 
-        if (!is_null($methodPartNameFilter)) {
+        if (null !== $methodPartNameFilter) {
             $endpoints = array_filter(
                 $reflectionClass->getMethods(),
                 static fn($method) => str_contains($method->name, $methodPartNameFilter)
@@ -51,22 +54,28 @@ abstract class Autodoc implements AutodocInterface
                 /** @var ?ReflectionNamedType $type */
                 $type = $parameter->getType();
 
-                if (!$type?->isBuiltin()) {
-                    $typeName = $type->getName();
-
-                    if (class_exists($typeName) || interface_exists($typeName)) {
-                        $reflectionClass = new ReflectionClass($typeName);
-
-                        if ($reflectionClass->implementsInterface('Autodoc\\Params\\ParamsInterface')) {
-                            $this->documentation[] = $this->process(
-                                $endpoint,
-                                $title,
-                                $typeName,
-                                $reflectionClass->getProperties()
-                            );
-                        }
-                    }
+                if ($type === null || $type->isBuiltin() === true) {
+                    continue;
                 }
+
+                $typeName = $type->getName();
+
+                if (class_exists($typeName) === false && interface_exists($typeName) === false) {
+                    continue;
+                }
+
+                $reflectionClass = new ReflectionClass($typeName);
+
+                if (false === $reflectionClass->implementsInterface('Autodoc\\Params\\ParamsInterface')) {
+                    continue;
+                }
+
+                $this->documentation[] = $this->process(
+                    $endpoint,
+                    $title,
+                    $typeName,
+                    $reflectionClass->getProperties()
+                );
             }
         }
 
