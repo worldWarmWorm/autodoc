@@ -7,6 +7,23 @@ namespace Autodoc;
 use Autodoc\Exceptions\AutodocException;
 use ReflectionMethod, ReflectionNamedType;
 
+/**
+ * @template YamlDocT of array{
+ *     title: string,
+ *     endpoints: array<string, array{
+ *         annotation: string,
+ *         inputType: string,
+ *         params: array<string, array{
+ *             type: string,
+ *             isRequired: bool,
+ *             annotation: string
+ *         }>,
+ *         returnType: string
+ *     }>
+ * }
+ *
+ * @property YamlDocT $endpoints
+ */
 final class YamlAutodoc extends Autodoc
 {
     /**
@@ -60,43 +77,15 @@ final class YamlAutodoc extends Autodoc
 
         file_put_contents(
             "$fileName." . Autodoc::YAML,
-            $this->arrayToYaml($this->documentation)
+            arrayToYaml($this->documentation)
         );
     }
 
     /**
-     * @param array<string|int, mixed> $array
+     * @return YamlDocT
      */
-    private function arrayToYaml(array $array, int $indent = 0): string
+    public function getDocumentation(): array
     {
-        $yaml = '';
-        $indentStr = str_repeat('  ', $indent);
-
-        foreach ($array as $key => $value) {
-            if (is_array($value)) {
-                if (is_int($key)) {
-                    $yaml .= $this->arrayToYaml($value, $indent);
-                } else {
-                    $yaml .= "$indentStr$key:\n" . $this->arrayToYaml($value, $indent + 1);
-                }
-            } else {
-                if (is_bool($value)) {
-                    $valueStr = $value ? 'true' : 'false';
-                } elseif (is_null($value)) {
-                    $valueStr = 'null';
-                } elseif (is_numeric($value)) {
-                    $valueStr = $value;
-                } else {
-                    $valueStr = '"' . addslashes($value instanceof ReflectionMethod ? $value->getName() : $value) . '"';
-                }
-                if (is_int($key)) {
-                    $yaml .= "$indentStr- $valueStr\n";
-                } else {
-                    $yaml .= "$indentStr$key: $valueStr\n";
-                }
-            }
-        }
-
-        return $yaml;
+        return parent::getDocumentation();
     }
 }

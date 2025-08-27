@@ -7,6 +7,23 @@ namespace Autodoc;
 use Autodoc\Exceptions\AutodocException;
 use ReflectionMethod, ReflectionNamedType;
 
+/**
+ * @template JsonDocT of array{
+ *     _comment: string,
+ *     endpoints: array<string, array{
+ *         annotation: string,
+ *         inputType: string,
+ *         params: array<string, array{
+ *             type: string,
+ *             isRequired: bool,
+ *             annotation: string
+ *         }>,
+ *         returnType: string
+ *     }>
+ * }
+ *
+ * @property JsonDocT $endpoints
+ */
 final class JsonAutodoc extends Autodoc
 {
     /**
@@ -62,5 +79,13 @@ final class JsonAutodoc extends Autodoc
             "$fileName." . Autodoc::JSON,
             json_encode($this->documentation, JSON_PRETTY_PRINT)
         );
+    }
+
+    /**
+     * @return JsonDocT
+     */
+    public function getDocumentation(): array
+    {
+        return parent::getDocumentation();
     }
 }

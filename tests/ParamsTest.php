@@ -18,6 +18,7 @@ final class ParamsTest extends TestCase
      * @param array<TKey, TValue> $paramsExpected
      *
      * @dataProvider paramsProvider
+     *
      * @throws AutodocException
      */
     public function testParamsConstructor(array $paramsInput, array $paramsExpected): void
