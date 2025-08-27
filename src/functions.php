@@ -44,3 +44,16 @@ if (!function_exists('arrayToYaml')) {
         return $yaml;
     }
 }
+
+if (!function_exists('arrayToOpenApi')) {
+    /**
+     * @param array<string|int, mixed> $array
+     */
+    function arrayToOpenApi(array $array, int $indent = 0): string
+    {
+        $openApi = '';
+        $indentStr = str_repeat('  ', $indent);
+
+        return $openApi;
+    }
+}
