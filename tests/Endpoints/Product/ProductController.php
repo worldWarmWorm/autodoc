@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Autodoc\Tests\Endpoints\Product;
 
-use Autodoc\{JsonAutodoc, OpenApiAutodoc, YamlAutodoc};
+use Autodoc\{JsonAutodoc, YamlAutodoc};
 use Autodoc\EndpointInterface;
 use Autodoc\Exceptions\AutodocException;
-use Throwable;
 
 final class ProductController implements EndpointInterface
 {
@@ -35,7 +34,7 @@ final class ProductController implements EndpointInterface
     }
 
     /**
-     * @throws AutodocException|Throwable
+     * @throws AutodocException
      */
     public function __construct()
     {
@@ -43,6 +42,5 @@ final class ProductController implements EndpointInterface
 
         (new JsonAutodoc($this))->generate($title);
         (new YamlAutodoc($this))->generate($title);
-        (new OpenApiAutodoc($this))->generate($title, 'openapi');
     }
 }
