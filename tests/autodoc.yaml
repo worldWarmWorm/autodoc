@@ -1,4 +1,4 @@
-title: "The documentation of #Autodoc\\Tests\\Endpoints\\Product\\ProductController endpoints"
+title: "The documentation of #Autodoc\\Tests\\Api\\Product\\ProductController endpoints"
 endpoints:
   getProducts:
     annotation: "/**
@@ -9,7 +9,7 @@ endpoints:
      *
      * @return array{success: bool, products: string}
      */"
-    inputType: "Autodoc\\Tests\\Endpoints\\Product\\ProductParams"
+    inputType: "Autodoc\\Tests\\Api\\Product\\ProductParams"
     params:
       ids:
         type: "array"

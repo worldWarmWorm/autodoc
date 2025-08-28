@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Autodoc\Tests\Endpoints\Product;
+namespace Autodoc\Tests\Api\Product;
 
 use Autodoc\Params\Params;
 

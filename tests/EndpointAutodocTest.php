@@ -2,7 +2,7 @@
 
 namespace Autodoc\Tests;
 
-use Autodoc\Tests\Endpoints\Product\ProductController;
+use Autodoc\Tests\Api\Product\ProductController;
 use PHPUnit\Framework\TestCase;
 
 final class EndpointAutodocTest extends TestCase
