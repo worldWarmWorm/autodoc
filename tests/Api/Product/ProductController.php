@@ -15,6 +15,7 @@ final class ProductController implements EndpointInterface
      * @template TValue of null|int|string|array
      *
      * @param ProductParams<TKey, TValue> $params
+     * @autodocDescription Method for getting products data
      *
      * @return array{success: bool, products: string}
      */

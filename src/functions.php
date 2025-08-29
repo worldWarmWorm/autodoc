@@ -44,3 +44,10 @@ if (!function_exists('arrayToYaml')) {
         return $yaml;
     }
 }
+
+if (!function_exists('extractDescription')) {
+    function extractDescription(string $string): string
+    {
+        return trim(preg_replace('/.*@autodocDescription\s+([^*]+)\*.*/s', '$1', $string) ?? '');
+    }
+}

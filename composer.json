@@ -13,7 +13,13 @@
   "minimum-stability": "dev",
   "require": {
     "php": ">=7.4",
-    "ext-json": "*"
+    "ext-dom": "*",
+    "ext-json": "*",
+    "ext-libxml": "*",
+    "ext-mbstring": "*",
+    "ext-tokenizer": "*",
+    "ext-xml": "*",
+    "ext-xmlwriter": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "9.6.x-dev",

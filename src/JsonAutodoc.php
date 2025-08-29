@@ -40,7 +40,9 @@ final class JsonAutodoc extends Autodoc
             $documentation = [];
             $endpointName = $endpoint->getName();
             $documentation['_comment'] = $title;
-            $documentation['endpoints'][$endpointName]['annotation'] = $endpoint->getDocComment();
+            $docComment = $endpoint->getDocComment();
+            $documentation['endpoints'][$endpointName]['description'] = extractDescription($docComment);
+            $documentation['endpoints'][$endpointName]['annotation'] = $docComment;
             $documentation['endpoints'][$endpointName]['inputType'] = $typeName;
 
             foreach ($properties as $property) {

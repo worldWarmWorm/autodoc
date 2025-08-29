@@ -1,11 +1,13 @@
 title: "The documentation of #Autodoc\\Tests\\Api\\Product\\ProductController endpoints"
 endpoints:
   getProducts:
+    description: "Method for getting products data"
     annotation: "/**
      * @template TKey of array-key
      * @template TValue of null|int|string|array
      *
      * @param ProductParams<TKey, TValue> $params
+     * @autodocDescription Method for getting products data
      *
      * @return array{success: bool, products: string}
      */"
