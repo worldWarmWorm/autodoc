@@ -71,7 +71,7 @@ final class YamlAutodoc extends Autodoc
         })();
     }
 
-    public function save(string $fileName = 'autodoc'): void
+    public function save(string $fileName): void
     {
         if ([] === $this->documentation) {
             throw new AutodocException('Empty documentation data');

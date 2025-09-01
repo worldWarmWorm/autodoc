@@ -1,0 +1,35 @@
+[
+    {
+        "_comment": "The documentation of #Autodoc\\Api\\Product\\Controller\\ProductController endpoints",
+        "endpoints": {
+            "getProducts": {
+                "description": "Method for getting products data",
+                "annotation": "\/**\n     * @template TKey of array-key\n     * @template TValue of null|int|string|array\n     *\n     * @param ProductParams<TKey, TValue> $params\n     * @autodocDescription Method for getting products data\n     *\n     * @return array{success: bool, products: string}\n     *\/",
+                "inputType": "Autodoc\\Tests\\Api\\Product\\ProductParams",
+                "params": {
+                    "ids": {
+                        "type": "array",
+                        "isRequired": true,
+                        "annotation": "\/**\n     * Unique ids of items\n     *\n     * @var array<int, int>\n     *\/"
+                    },
+                    "category": {
+                        "type": "string",
+                        "isRequired": true,
+                        "annotation": "\/**\n     * Category of items\n     *\/"
+                    },
+                    "limit": {
+                        "type": "int",
+                        "isRequired": false,
+                        "annotation": "\/**\n     * Count limit of items\n     *\/"
+                    },
+                    "offset": {
+                        "type": "int",
+                        "isRequired": false,
+                        "annotation": "\/**\n     * Offset of items\n     *\/"
+                    }
+                },
+                "returnType": "array"
+            }
+        }
+    }
+]

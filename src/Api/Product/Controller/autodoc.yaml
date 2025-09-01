@@ -1,0 +1,42 @@
+title: "The documentation of #Autodoc\\Api\\Product\\Controller\\ProductController endpoints"
+endpoints:
+  getProducts:
+    description: "Method for getting products data"
+    annotation: "/**
+     * @template TKey of array-key
+     * @template TValue of null|int|string|array
+     *
+     * @param ProductParams<TKey, TValue> $params
+     * @autodocDescription Method for getting products data
+     *
+     * @return array{success: bool, products: string}
+     */"
+    inputType: "Autodoc\\Tests\\Api\\Product\\ProductParams"
+    params:
+      ids:
+        type: "array"
+        isRequired: true
+        annotation: "/**
+     * Unique ids of items
+     *
+     * @var array<int, int>
+     */"
+      category:
+        type: "string"
+        isRequired: true
+        annotation: "/**
+     * Category of items
+     */"
+      limit:
+        type: "int"
+        isRequired: false
+        annotation: "/**
+     * Count limit of items
+     */"
+      offset:
+        type: "int"
+        isRequired: false
+        annotation: "/**
+     * Offset of items
+     */"
+    returnType: "array"

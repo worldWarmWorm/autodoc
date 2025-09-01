@@ -1,6 +1,6 @@
 [
     {
-        "_comment": "The documentation of #Autodoc\\Tests\\Api\\Product\\ProductController endpoints",
+        "_comment": "The documentation of #Autodoc\\Api\\Product\\Controller\\ProductController endpoints",
         "endpoints": {
             "getProducts": {
                 "description": "Method for getting products data",

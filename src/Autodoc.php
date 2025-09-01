@@ -47,7 +47,7 @@ abstract class Autodoc implements AutodocInterface
         $this->endpoints = $endpoints;
     }
 
-    public function generate(string $title, string $fileName = 'autodoc'): void
+    public function generate(string $title, string $fileName): void
     {
         foreach ($this->endpoints as $endpoint) {
             foreach ($endpoint->getParameters() as $parameter) {
