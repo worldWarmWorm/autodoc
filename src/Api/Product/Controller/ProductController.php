@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace Autodoc\Api\Product\Controller;
 
-use Autodoc\{
-    JsonAutodoc,
-    Tests\Api\Product\ProductParams,
-    YamlAutodoc};
-use Autodoc\EndpointInterface;
-use Autodoc\Exceptions\AutodocException;
+
+use Autodoc\Autodoc\Exceptions\AutodocException;
+use Autodoc\Autodoc\{EndpointInterface, JsonAutodoc, YamlAutodoc};
 
 final class ProductController implements EndpointInterface
 {
@@ -42,6 +39,7 @@ final class ProductController implements EndpointInterface
      */
     public function __construct(string $fileName)
     {
-        (new JsonAutodoc($this))->generate("The documentation of #" . self::class . " endpoints", $fileName);
+        (new JsonAutodoc($this))->generate("The documentation of " . self::class . " endpoints", $fileName);
+        (new YamlAutodoc($this))->generate("The documentation of " . self::class . " endpoints", $fileName);
     }
 }

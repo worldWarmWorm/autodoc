@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Autodoc\Api\Product\Controller;
 
-use Autodoc\Params\Params;
+use Autodoc\Autodoc\Params\Params;
 
 /**
  * @template TKey of array-key

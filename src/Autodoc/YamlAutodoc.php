@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Autodoc;
+namespace Autodoc\Autodoc;
 
-use Autodoc\Exceptions\AutodocException;
+use Autodoc\Autodoc\Exceptions\AutodocException;
 use ReflectionMethod, ReflectionNamedType;
 
 /**
- * @template JsonDocT of array{
- *     _comment: string,
+ * @template YamlDocT of array{
+ *     title: string,
  *     endpoints: array<string, array{
  *         annotation: string,
  *         inputType: string,
@@ -22,9 +22,9 @@ use ReflectionMethod, ReflectionNamedType;
  *     }>
  * }
  *
- * @property JsonDocT $endpoints
+ * @property YamlDocT $endpoints
  */
-final class JsonAutodoc extends Autodoc
+final class YamlAutodoc extends Autodoc
 {
     /**
      * @inheritDoc
@@ -36,12 +36,12 @@ final class JsonAutodoc extends Autodoc
         array $properties
     ): array
     {
-        return (static function() use ($endpoint, $title, $typeName, $properties): array {
+        return (function() use ($endpoint, $title, $typeName, $properties): array {
             $documentation = [];
             $endpointName = $endpoint->getName();
-            $documentation['_comment'] = $title;
+            $documentation['title'] = $title;
             $docComment = $endpoint->getDocComment();
-            $documentation['endpoints'][$endpointName]['description'] = extractDescription($docComment);
+            $documentation['endpoints'][$endpointName]['description'] = $this->extractDescription($docComment);
             $documentation['endpoints'][$endpointName]['annotation'] = $docComment;
             $documentation['endpoints'][$endpointName]['inputType'] = $typeName;
 
@@ -78,16 +78,52 @@ final class JsonAutodoc extends Autodoc
         }
 
         file_put_contents(
-            "$fileName." . Autodoc::JSON,
-            json_encode($this->documentation, JSON_PRETTY_PRINT)
+            "$fileName." . Autodoc::YAML,
+            $this->arrayToYaml($this->documentation)
         );
     }
 
     /**
-     * @return JsonDocT
+     * @return YamlDocT
      */
     public function getDocumentation(): array
     {
         return parent::getDocumentation();
+    }
+
+    /**
+     * @param array<string|int, mixed> $array
+     */
+    private function arrayToYaml(array $array, int $indent = 0): string
+    {
+        $yaml = '';
+        $indentStr = str_repeat('  ', $indent);
+
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                if (is_int($key)) {
+                    $yaml .= $this->arrayToYaml($value, $indent);
+                } else {
+                    $yaml .= "$indentStr$key:\n" . $this->arrayToYaml($value, $indent + 1);
+                }
+            } else {
+                if (is_bool($value)) {
+                    $valueStr = $value ? 'true' : 'false';
+                } elseif (is_null($value)) {
+                    $valueStr = 'null';
+                } elseif (is_numeric($value)) {
+                    $valueStr = $value;
+                } else {
+                    $valueStr = '"' . addslashes($value instanceof ReflectionMethod ? $value->getName() : $value) . '"';
+                }
+                if (is_int($key)) {
+                    $yaml .= "$indentStr- $valueStr\n";
+                } else {
+                    $yaml .= "$indentStr$key: $valueStr\n";
+                }
+            }
+        }
+
+        return $yaml;
     }
 }

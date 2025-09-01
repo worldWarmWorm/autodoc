@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Autodoc\Exceptions;
+namespace Autodoc\Autodoc\Exceptions;
 
 class AutodocException extends \Exception
 {

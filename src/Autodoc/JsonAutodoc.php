@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Autodoc;
+namespace Autodoc\Autodoc;
 
-use Autodoc\Exceptions\AutodocException;
+use Autodoc\Autodoc\Exceptions\AutodocException;
 use ReflectionMethod, ReflectionNamedType;
 
 /**
- * @template YamlDocT of array{
- *     title: string,
+ * @template JsonDocT of array{
+ *     _comment: string,
  *     endpoints: array<string, array{
  *         annotation: string,
  *         inputType: string,
@@ -22,9 +22,9 @@ use ReflectionMethod, ReflectionNamedType;
  *     }>
  * }
  *
- * @property YamlDocT $endpoints
+ * @property JsonDocT $endpoints
  */
-final class YamlAutodoc extends Autodoc
+final class JsonAutodoc extends Autodoc
 {
     /**
      * @inheritDoc
@@ -36,12 +36,12 @@ final class YamlAutodoc extends Autodoc
         array $properties
     ): array
     {
-        return (static function() use ($endpoint, $title, $typeName, $properties): array {
+        return (function() use ($endpoint, $title, $typeName, $properties): array {
             $documentation = [];
             $endpointName = $endpoint->getName();
-            $documentation['title'] = $title;
+            $documentation['_comment'] = $title;
             $docComment = $endpoint->getDocComment();
-            $documentation['endpoints'][$endpointName]['description'] = extractDescription($docComment);
+            $documentation['endpoints'][$endpointName]['description'] = $this->extractDescription($docComment);
             $documentation['endpoints'][$endpointName]['annotation'] = $docComment;
             $documentation['endpoints'][$endpointName]['inputType'] = $typeName;
 
@@ -78,13 +78,13 @@ final class YamlAutodoc extends Autodoc
         }
 
         file_put_contents(
-            "$fileName." . Autodoc::YAML,
-            arrayToYaml($this->documentation)
+            "$fileName." . Autodoc::JSON,
+            json_encode($this->documentation, JSON_PRETTY_PRINT)
         );
     }
 
     /**
-     * @return YamlDocT
+     * @return JsonDocT
      */
     public function getDocumentation(): array
     {

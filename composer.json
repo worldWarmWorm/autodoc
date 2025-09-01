@@ -29,8 +29,7 @@
   "autoload": {
     "psr-4": {
       "Autodoc\\": "src/"
-    },
-    "files": ["src/functions.php"]
+    }
   },
   "autoload-dev": {
     "psr-4": {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Autodoc;
+namespace Autodoc\Autodoc;
 
-use Autodoc\Exceptions\AutodocException;
-use ReflectionClass, ReflectionMethod, ReflectionNamedType;
+use Autodoc\Autodoc\Exceptions\AutodocException;
+use ReflectionClass, ReflectionNamedType, ReflectionMethod;
 
 abstract class Autodoc implements AutodocInterface
 {
@@ -30,7 +30,7 @@ abstract class Autodoc implements AutodocInterface
         $reflectionClass = new \ReflectionClass($controller);
         $endpoints = array_filter(
             $reflectionClass->getMethods(),
-            static fn(ReflectionMethod $method) => !str_contains($method->name, '__')
+            static fn(ReflectionMethod $method) => strpos($method->name, '__') === false
         );
 
         if ($endpoints === []) {
@@ -40,7 +40,7 @@ abstract class Autodoc implements AutodocInterface
         if (null !== $methodPartNameFilter) {
             $endpoints = array_filter(
                 $reflectionClass->getMethods(),
-                static fn($method) => str_contains($method->name, $methodPartNameFilter)
+                static fn($method) => strpos($method->name, $methodPartNameFilter) !== false
             );
         }
 
@@ -66,7 +66,7 @@ abstract class Autodoc implements AutodocInterface
 
                 $reflectionClass = new ReflectionClass($typeName);
 
-                if (false === $reflectionClass->implementsInterface('Autodoc\\Params\\ParamsInterface')) {
+                if (false === $reflectionClass->implementsInterface('Autodoc\\Autodoc\\Params\\ParamsInterface')) {
                     continue;
                 }
 
@@ -90,5 +90,10 @@ abstract class Autodoc implements AutodocInterface
     public function getDocumentation(): array
     {
         return $this->documentation;
+    }
+
+    protected function extractDescription(string $string): string
+    {
+        return trim(preg_replace('/.*@autodocDescription\s+([^*]+)\*.*/s', '$1', $string) ?? '');
     }
 }

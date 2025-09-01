@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Autodoc\Tests;
 
-use Autodoc\Exceptions\AutodocException;
-use Autodoc\Tests\Api\Product\ProductParams;
+use Autodoc\Autodoc\Exceptions\AutodocException;
+use Autodoc\Api\Product\Controller\ProductParams;
 use PHPUnit\Framework\TestCase;
 
 final class ParamsTest extends TestCase

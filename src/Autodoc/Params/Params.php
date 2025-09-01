@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Autodoc\Params;
+namespace Autodoc\Autodoc\Params;
 
 use ArrayObject, ReflectionClass, ReflectionNamedType;
-use Autodoc\Exceptions\AutodocException;
+use Autodoc\Autodoc\Exceptions\AutodocException;
 
 /**
  * Converts method's array of params into objects with strict typed properties
