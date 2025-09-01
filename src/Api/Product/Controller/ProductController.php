@@ -42,9 +42,6 @@ final class ProductController implements EndpointInterface
      */
     public function __construct(string $fileName)
     {
-        $title = "The documentation of #" . self::class . " endpoints";
-
-        (new JsonAutodoc($this))->generate($title, $fileName);
-        (new YamlAutodoc($this))->generate($title, $fileName);
+        (new JsonAutodoc($this))->generate("The documentation of #" . self::class . " endpoints", $fileName);
     }
 }
