@@ -6,7 +6,15 @@ use Autodoc\Api\Product\Controller\ProductController;
 
 $productController = new ProductController(__DIR__ . '/Api/Product/Controller/autodoc');
 
-$fileName = __DIR__ . '/Api/Product/View/index.php';
-$content = file_get_contents($fileName);
+$files = [
+    __DIR__ . '/Api/Product/View/autodoc.php',
+];
 
-echo $content;
+
+
+foreach ($files as $file) {
+    ob_start();
+    include_once($file);
+    $file = ob_get_clean();
+    echo $file;
+}
