@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Autodoc\Autodoc;
 
-use Autodoc\Api\Product\Controller\ProductParams;
 use Autodoc\Autodoc\Exceptions\AutodocException;
 use ReflectionClass, ReflectionMethod, ReflectionNamedType;
 
