@@ -71,10 +71,10 @@ abstract class Autodoc implements AutodocInterface
                 }
 
                 $this->documentation[] = $this->process(
+                    $reflectionClass,
                     $endpoint,
                     $title,
-                    $typeName,
-                    $reflectionClass->getProperties()
+                    $typeName
                 );
             }
         }

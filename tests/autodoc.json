@@ -10,21 +10,25 @@
                     "ids": {
                         "type": "array",
                         "isRequired": true,
+                        "isDefault": true,
                         "annotation": "\/**\n     * Unique ids of items\n     *\n     * @var array<int, int>\n     *\/"
                     },
                     "category": {
                         "type": "string",
                         "isRequired": true,
+                        "isDefault": true,
                         "annotation": "\/**\n     * Category of items\n     *\/"
                     },
                     "limit": {
                         "type": "int",
-                        "isRequired": false,
+                        "isRequired": true,
+                        "isDefault": true,
                         "annotation": "\/**\n     * Count limit of items\n     *\/"
                     },
                     "offset": {
                         "type": "int",
-                        "isRequired": false,
+                        "isRequired": true,
+                        "isDefault": true,
                         "annotation": "\/**\n     * Offset of items\n     *\/"
                     }
                 },

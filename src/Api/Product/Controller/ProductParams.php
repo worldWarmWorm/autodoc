@@ -19,20 +19,20 @@ final class ProductParams extends Params
      *
      * @var array<int, int>
      */
-    public array $ids;
+    public array $ids = [];
 
     /**
      * Category of items
      */
-    public string $category;
+    public string $category = '';
 
     /**
      * Count limit of items
      */
-    public ?int $limit = null;
+    public int $limit = 0;
 
     /**
      * Offset of items
      */
-    public ?int $offset = null;
+    public int $offset = 0;
 }

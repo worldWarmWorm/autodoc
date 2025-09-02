@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace Autodoc\Autodoc;
 
-use ReflectionMethod, ReflectionProperty;
+use ReflectionMethod, ReflectionClass;
 
 interface AutodocInterface
 {
     /**
-     * @param array<int, ReflectionProperty> $properties
      * @return array<mixed>
      */
-    public function process(ReflectionMethod $endpoint, string $title, string $typeName, array $properties): array;
+    public function process(
+        ReflectionClass $reflectionClass,
+        ReflectionMethod $endpoint,
+        string $title,
+        string $typeName
+    ): array;
 
     public function save(string $fileName): void;
 }

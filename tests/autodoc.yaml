@@ -16,6 +16,7 @@ endpoints:
       ids:
         type: "array"
         isRequired: true
+        isDefault: true
         annotation: "/**
      * Unique ids of items
      *
@@ -24,18 +25,21 @@ endpoints:
       category:
         type: "string"
         isRequired: true
+        isDefault: true
         annotation: "/**
      * Category of items
      */"
       limit:
         type: "int"
-        isRequired: false
+        isRequired: true
+        isDefault: true
         annotation: "/**
      * Count limit of items
      */"
       offset:
         type: "int"
-        isRequired: false
+        isRequired: true
+        isDefault: true
         annotation: "/**
      * Offset of items
      */"

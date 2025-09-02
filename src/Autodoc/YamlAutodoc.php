@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Autodoc\Autodoc;
 
 use Autodoc\Autodoc\Exceptions\AutodocException;
-use ReflectionMethod, ReflectionNamedType;
+use ReflectionClass, ReflectionMethod, ReflectionNamedType;
 
 /**
  * @template YamlDocT of array{
@@ -30,13 +30,13 @@ final class YamlAutodoc extends Autodoc
      * @inheritDoc
      */
     public function process(
+        ReflectionClass $reflectionClass,
         ReflectionMethod $endpoint,
         string $title,
-        string $typeName,
-        array $properties
+        string $typeName
     ): array
     {
-        return (function() use ($endpoint, $title, $typeName, $properties): array {
+        return (function() use ($reflectionClass, $endpoint, $title, $typeName): array {
             $documentation = [];
             $endpointName = $endpoint->getName();
             $documentation['title'] = $title;
@@ -45,7 +45,7 @@ final class YamlAutodoc extends Autodoc
             $documentation['endpoints'][$endpointName]['annotation'] = $docComment;
             $documentation['endpoints'][$endpointName]['inputType'] = $typeName;
 
-            foreach ($properties as $property) {
+            foreach ($reflectionClass->getProperties() as $property) {
                 /** @var ?ReflectionNamedType $propertyType */
                 $propertyType = $property->getType();
 
@@ -55,7 +55,7 @@ final class YamlAutodoc extends Autodoc
 
                 $documentation['endpoints'][$endpointName]['params'][$property->getName()] = [
                     'type' => $propertyType->getName(),
-                    'isRequired' => !$propertyType->allowsNull(),
+                    'defaultValue' => $property->isDefault() ? $property->getValue($reflectionClass) : false,
                     'annotation' => $property->getDocComment()
                 ];
             }
