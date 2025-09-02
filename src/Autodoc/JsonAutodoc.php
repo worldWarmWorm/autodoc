@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Autodoc\Autodoc;
 
+use Autodoc\Api\Product\Controller\ProductParams;
 use Autodoc\Autodoc\Exceptions\AutodocException;
 use ReflectionClass, ReflectionMethod, ReflectionNamedType;
 
@@ -55,7 +56,7 @@ final class JsonAutodoc extends Autodoc
 
                 $documentation['endpoints'][$endpointName]['params'][$property->getName()] = [
                     'type' => $propertyType->getName(),
-                    'defaultValue' => $property->isDefault() ? $property->getValue($reflectionClass) : false,
+                    'defaultValue' => $property->isDefault() ? $property->getValue($reflectionClass->newInstance()) : false,
                     'annotation' => $property->getDocComment()
                 ];
             }

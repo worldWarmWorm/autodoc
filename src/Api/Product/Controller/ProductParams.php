@@ -12,7 +12,7 @@ use Autodoc\Autodoc\Params\Params;
  *
  * @extends Params<TKey, TValue>
  */
-final class ProductParams extends Params
+class ProductParams extends Params
 {
     /**
      * Unique ids of items

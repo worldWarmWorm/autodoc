@@ -55,7 +55,7 @@ final class YamlAutodoc extends Autodoc
 
                 $documentation['endpoints'][$endpointName]['params'][$property->getName()] = [
                     'type' => $propertyType->getName(),
-                    'defaultValue' => $property->isDefault() ? $property->getValue($reflectionClass) : false,
+                    'defaultValue' => $property->isDefault() ? $property->getValue($reflectionClass->newInstance()) : false,
                     'annotation' => $property->getDocComment()
                 ];
             }

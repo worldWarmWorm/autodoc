@@ -9,26 +9,22 @@
                 "params": {
                     "ids": {
                         "type": "array",
-                        "isRequired": true,
-                        "isDefault": true,
+                        "defaultValue": [],
                         "annotation": "\/**\n     * Unique ids of items\n     *\n     * @var array<int, int>\n     *\/"
                     },
                     "category": {
                         "type": "string",
-                        "isRequired": true,
-                        "isDefault": true,
+                        "defaultValue": "",
                         "annotation": "\/**\n     * Category of items\n     *\/"
                     },
                     "limit": {
                         "type": "int",
-                        "isRequired": true,
-                        "isDefault": true,
+                        "defaultValue": 0,
                         "annotation": "\/**\n     * Count limit of items\n     *\/"
                     },
                     "offset": {
                         "type": "int",
-                        "isRequired": true,
-                        "isDefault": true,
+                        "defaultValue": 0,
                         "annotation": "\/**\n     * Offset of items\n     *\/"
                     }
                 },
