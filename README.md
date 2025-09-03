@@ -17,8 +17,8 @@ $objectToDocument = new MyClass();
 <hr>
 
 ## Usage examples
-<a href="https://github.com/worldWarmWorm/autodoc/blob/a8683403fa89e7c2f5921179fca08a05026927b7/tests/EndpointAutodocTest.php#L18">/tests/EndpointAutodocTest.php</a><br><br>
-<a href="https://github.com/worldWarmWorm/autodoc/blob/a8683403fa89e7c2f5921179fca08a05026927b7/src/Api/Product/Controller/ProductController.php#L41">/src/Api/Product/Controller/ProductController.php</a>
+<a href="https://github.com/worldWarmWorm/autodoc/blob/a8683403fa89e7c2f5921179fca08a05026927b7/tests/EndpointAutodocTest.php#L18" target="_blank">/tests/EndpointAutodocTest.php</a><br><br>
+<a href="https://github.com/worldWarmWorm/autodoc/blob/a8683403fa89e7c2f5921179fca08a05026927b7/src/Api/Product/Controller/ProductController.php#L41" target="_blank">/src/Api/Product/Controller/ProductController.php</a>
 <hr>
 
 ## What can a library do?
@@ -48,4 +48,4 @@ not be located in your project. Most likely, you will need to replace the librar
 If you want to join to develop this project - you are welcome in pull requests.
 If you find smth not working you are welcome to issues.
 
-Find me in <a href="https://t.me/davydkin_valery">telegram</a> or <a href="mailto:world-warm-worm@ya.ru?body=autodoc">email</a>.
+Find me in <a href="https://t.me/davydkin_valery" target="_blank">telegram</a> or <a href="mailto:world-warm-worm@ya.ru" target="_blank">email</a>.
