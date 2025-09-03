@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Autodoc\Autodoc;
 
 use Autodoc\Autodoc\Exceptions\AutodocException;
-use ReflectionClass, ReflectionMethod, ReflectionNamedType;
+use ReflectionClass;
+use ReflectionMethod;
+use ReflectionNamedType;
 
 /**
  * @template JsonDocT of array{
@@ -34,9 +36,8 @@ final class JsonAutodoc extends Autodoc
         ReflectionMethod $endpoint,
         string $title,
         string $typeName
-    ): array
-    {
-        return (function() use ($reflectionClass, $endpoint, $title, $typeName): array {
+    ): array {
+        return (function () use ($reflectionClass, $endpoint, $title, $typeName): array {
             $documentation = [];
             $endpointName = $endpoint->getName();
             $documentation['_comment'] = $title;

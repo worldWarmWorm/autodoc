@@ -6,5 +6,4 @@ namespace Autodoc\Autodoc\Params;
 
 interface ParamsInterface
 {
-
 }

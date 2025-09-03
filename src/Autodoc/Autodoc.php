@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Autodoc\Autodoc;
 
 use Autodoc\Autodoc\Exceptions\AutodocException;
-use ReflectionClass, ReflectionNamedType, ReflectionMethod;
+use ReflectionClass;
+use ReflectionNamedType;
+use ReflectionMethod;
 
 abstract class Autodoc implements AutodocInterface
 {
@@ -30,7 +32,7 @@ abstract class Autodoc implements AutodocInterface
         $reflectionClass = new \ReflectionClass($controller);
         $endpoints = array_filter(
             $reflectionClass->getMethods(),
-            static fn(ReflectionMethod $method) => strpos($method->name, '__') === false
+            static fn (ReflectionMethod $method) => strpos($method->name, '__') === false
         );
 
         if ($endpoints === []) {
@@ -40,7 +42,7 @@ abstract class Autodoc implements AutodocInterface
         if (null !== $methodPartNameFilter) {
             $endpoints = array_filter(
                 $reflectionClass->getMethods(),
-                static fn($method) => strpos($method->name, $methodPartNameFilter) !== false
+                static fn ($method) => strpos($method->name, $methodPartNameFilter) !== false
             );
         }
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Autodoc\Api\Product\Controller;
 
-
 use Autodoc\Autodoc\Exceptions\AutodocException;
 use Autodoc\Autodoc\{EndpointInterface, JsonAutodoc, YamlAutodoc};
 

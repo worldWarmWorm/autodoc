@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Autodoc\Autodoc;
 
-use ReflectionMethod, ReflectionClass;
+use ReflectionMethod;
+use ReflectionClass;
 
 interface AutodocInterface
 {

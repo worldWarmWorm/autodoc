@@ -9,5 +9,4 @@ namespace Autodoc\Autodoc;
  */
 interface EndpointInterface
 {
-
 }

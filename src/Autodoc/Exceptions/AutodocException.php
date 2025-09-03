@@ -6,5 +6,4 @@ namespace Autodoc\Autodoc\Exceptions;
 
 final class AutodocException extends \Exception
 {
-
 }

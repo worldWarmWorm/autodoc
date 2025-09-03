@@ -50,15 +50,15 @@ $productController = new ProductController(__DIR__ . '/Api/Product/Controller/au
     <h1>Documentation</h1>
 </header>
 <main>
-    <?php
-        $files = [
-            '/Api/Product/Controller/autodoc.json',
-        ];
+<?php
+$files = [
+    '/Api/Product/Controller/autodoc.json',
+];
 
-        foreach ($files as $file) {
-            echo '<pre><code>' . file_get_contents(__DIR__ . $file) . '</pre></code>';
-        }
-    ?>
+foreach ($files as $file) {
+    echo '<pre><code>' . file_get_contents(__DIR__ . $file) . '</pre></code>';
+}
+?>
 </main>
 <footer>
     <p>Build with <a href="https://github.com/worldWarmWorm/autodoc" target="_blank">autodoc</a></p>

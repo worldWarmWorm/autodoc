@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Autodoc\Autodoc\Params;
 
-use ArrayObject, ReflectionClass, ReflectionNamedType;
+use ArrayObject;
+use ReflectionClass;
+use ReflectionNamedType;
 use Autodoc\Autodoc\Exceptions\AutodocException;
 
 /**
@@ -26,7 +28,7 @@ abstract class Params extends ArrayObject implements ParamsInterface
     {
         $data = array_filter(
             $data,
-            static fn($value, $key) => !in_array($value, [null, '_'], true) && is_string($key),
+            static fn ($value, $key) => !in_array($value, [null, '_'], true) && is_string($key),
             ARRAY_FILTER_USE_BOTH
         );
 
