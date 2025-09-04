@@ -62,12 +62,7 @@ final class YamlAutodoc extends Autodoc
                 ];
             }
 
-            /** @var ?ReflectionNamedType $returnType */
-            $returnType = $endpoint->getReturnType();
-
-            if (null !== $returnType) {
-                $documentation['endpoints'][$endpointName]['returnType'] = $returnType->getName();
-            }
+            $documentation['endpoints'][$endpointName]['returnType'] = $endpoint->getReturnType()?->getName();
 
             return $documentation;
         })();

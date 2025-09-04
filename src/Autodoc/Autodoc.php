@@ -32,7 +32,7 @@ abstract class Autodoc implements AutodocInterface
         $reflectionClass = new \ReflectionClass($controller);
         $endpoints = array_filter(
             $reflectionClass->getMethods(),
-            static fn (ReflectionMethod $method) => strpos($method->name, '__') === false
+            static fn (ReflectionMethod $method) => !str_contains($method->name, '__')
         );
 
         if ($endpoints === []) {
@@ -42,7 +42,7 @@ abstract class Autodoc implements AutodocInterface
         if (null !== $methodPartNameFilter) {
             $endpoints = array_filter(
                 $reflectionClass->getMethods(),
-                static fn ($method) => strpos($method->name, $methodPartNameFilter) !== false
+                static fn ($method) => str_contains($method->name, $methodPartNameFilter)
             );
         }
 
