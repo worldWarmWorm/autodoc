@@ -12,10 +12,16 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "php": "8.0.*",
-    "ext-dom": "*"
+    "php": "8.0.*"
   },
   "require-dev": {
+    "ext-dom": "*",
+    "ext-json": "*",
+    "ext-libxml": "*",
+    "ext-mbstring": "*",
+    "ext-tokenizer": "*",
+    "ext-xml": "*",
+    "ext-xmlwriter": "*",
     "phpunit/phpunit": "9.6.x-dev",
     "phpstan/phpstan": "2.1.x-dev",
     "phpstan/phpstan-strict-rules": "2.0.x-dev",
