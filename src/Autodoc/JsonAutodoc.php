@@ -13,11 +13,12 @@ use ReflectionNamedType;
  * @template JsonDocT of array{
  *     _comment: string,
  *     endpoints: array<string, array{
+ *         description: string,
  *         annotation: string,
  *         inputType: string,
  *         params: array<string, array{
  *             type: string,
- *             isRequired: bool,
+ *             defaultValue: bool | int | string | array,
  *             annotation: string
  *         }>,
  *         returnType: string

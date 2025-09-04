@@ -12,14 +12,8 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "php": ">=7.4",
-    "ext-dom": "*",
-    "ext-json": "*",
-    "ext-libxml": "*",
-    "ext-mbstring": "*",
-    "ext-tokenizer": "*",
-    "ext-xml": "*",
-    "ext-xmlwriter": "*"
+    "php": "8.0.*",
+    "ext-dom": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "9.6.x-dev",
