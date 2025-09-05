@@ -2,6 +2,7 @@
 /vendor
 /composer.phar
 
+/src/sandbox.php
 composer.lock
 package.xml
 .php-cs-fixer.cache

@@ -11,9 +11,6 @@ use ReflectionMethod;
 
 abstract class Autodoc implements AutodocInterface
 {
-    public const JSON = 'json';
-    public const YAML = 'yaml';
-
     /**
      * @var array<ReflectionMethod>
      */

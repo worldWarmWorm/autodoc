@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Autodoc\Autodoc;
 
+use Autodoc\Autodoc\Enum\FileExtensionEnum;
 use Autodoc\Autodoc\Exceptions\AutodocException;
 use ReflectionClass;
 use ReflectionMethod;
@@ -75,7 +76,7 @@ final class YamlAutodoc extends Autodoc
         }
 
         file_put_contents(
-            "$fileName." . Autodoc::YAML,
+            "$fileName." . FileExtensionEnum::YAML->value,
             $this->arrayToYaml($this->documentation)
         );
     }
