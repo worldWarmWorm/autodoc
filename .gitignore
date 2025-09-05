@@ -3,6 +3,7 @@
 /composer.phar
 
 /src/sandbox.php
+rector.php
 composer.lock
 package.xml
 .php-cs-fixer.cache

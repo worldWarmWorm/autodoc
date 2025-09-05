@@ -53,7 +53,7 @@ abstract class Autodoc implements AutodocInterface
                 /** @var ?ReflectionNamedType $type */
                 $type = $parameter->getType();
 
-                if ($type === null || $type->isBuiltin() === true) {
+                if ($type === null || $type->isBuiltin()) {
                     continue;
                 }
 

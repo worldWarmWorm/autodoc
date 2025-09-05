@@ -13,7 +13,7 @@ final class EndpointAutodocTest extends TestCase
      */
     public function testAutodocProductEndpoints(): void
     {
-        $controller = new ProductController(__DIR__ . '/autodoc');
+        new ProductController(__DIR__ . '/autodoc');
 
         self::assertTrue(file_exists(__DIR__ . '/autodoc.json'));
         self::assertTrue(file_exists(__DIR__ . '/autodoc.yaml'));
