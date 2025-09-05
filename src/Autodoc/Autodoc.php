@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Autodoc\Autodoc;
 
 use Autodoc\Autodoc\Exceptions\AutodocException;
+use Autodoc\Autodoc\Params\ParamsInterface;
 use ReflectionClass;
 use ReflectionNamedType;
 use ReflectionMethod;
@@ -65,7 +66,7 @@ abstract class Autodoc implements AutodocInterface
 
                 $reflectionClass = new ReflectionClass($typeName);
 
-                if (false === $reflectionClass->implementsInterface('Autodoc\\Autodoc\\Params\\ParamsInterface')) {
+                if (false === $reflectionClass->implementsInterface(ParamsInterface::class)) {
                     continue;
                 }
 
