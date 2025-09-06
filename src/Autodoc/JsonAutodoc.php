@@ -84,6 +84,7 @@ final class JsonAutodoc extends Autodoc
     /**
      * @return JsonDocT
      */
+    #[\Override]
     public function getDocumentation(): array
     {
         return parent::getDocumentation();

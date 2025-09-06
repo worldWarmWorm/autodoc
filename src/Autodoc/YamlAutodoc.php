@@ -84,6 +84,7 @@ final class YamlAutodoc extends Autodoc
     /**
      * @return YamlDocT
      */
+    #[\Override]
     public function getDocumentation(): array
     {
         return parent::getDocumentation();
