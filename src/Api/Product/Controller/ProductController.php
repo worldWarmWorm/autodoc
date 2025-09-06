@@ -7,7 +7,7 @@ namespace Autodoc\Api\Product\Controller;
 use Autodoc\Autodoc\Exceptions\AutodocException;
 use Autodoc\Autodoc\{EndpointInterface, JsonAutodoc, YamlAutodoc};
 
-final class ProductController implements EndpointInterface
+final readonly class ProductController implements EndpointInterface
 {
     /**
      * @template TKey of array-key
