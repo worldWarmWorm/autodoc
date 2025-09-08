@@ -13,12 +13,12 @@ endpoint is called and is always up to date.
 ```php
 $objectToDocument = new MyClass();
 
-(new JsonAutodoc($objectToDocument))->generate(
+new JsonAutodoc($objectToDocument)->generate(
     "The documentation of " . $objectToDocument::class . " endpoints",
     '/path/to/file'
 );
 
-(new YamlAutodoc($objectToDocument))->generate(
+new YamlAutodoc($objectToDocument)->generate(
     "The documentation of " . $objectToDocument::class . " endpoints",
     '/path/to/file'
 );
