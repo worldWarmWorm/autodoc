@@ -7,3 +7,4 @@ rector.php
 composer.lock
 package.xml
 .php-cs-fixer.cache
+phpstan-baseline.neon

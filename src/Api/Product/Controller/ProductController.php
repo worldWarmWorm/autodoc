@@ -38,7 +38,7 @@ final readonly class ProductController implements EndpointInterface
      */
     public function __construct(string $fileName)
     {
-        (new JsonAutodoc($this))->generate("The documentation of " . self::class . " endpoints", $fileName);
-        (new YamlAutodoc($this))->generate("The documentation of " . self::class . " endpoints", $fileName);
+        new JsonAutodoc($this)->generate("The documentation of " . self::class . " endpoints", $fileName);
+        new YamlAutodoc($this)->generate("The documentation of " . self::class . " endpoints", $fileName);
     }
 }
